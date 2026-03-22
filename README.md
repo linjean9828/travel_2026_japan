@@ -32,4 +32,4 @@
    ```bash
    npm run dev
    ```
-3. 打開瀏覽器瀏覽 [http://localhost:3000](http://localhost:3000)。
+3. 打開瀏覽器瀏覽 [http://localhost:3000](http://localhost:3000。
