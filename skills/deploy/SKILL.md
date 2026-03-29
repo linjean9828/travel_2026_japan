@@ -81,11 +81,20 @@ CMD ["sh", "-c", "HOSTNAME=0.0.0.0 node server.js"]
 ```
 
 ### BackOff: Back-off restarting failed container（容器崩潰循環）
-**原因一**：ESM-only 套件（如 react-markdown v10、remark-gfm v4）在 standalone 模式下無法載入
+**原因一**：缺少 `.dockerignore`，本地的 `node_modules`、`.next` 被複製進 Docker builder，污染 build 產物
+
+**解法**：確保專案根目錄有 `.dockerignore`，內容至少包含：
+```
+node_modules
+.next
+.git
+```
+
+**原因二**：ESM-only 套件（如 react-markdown v10、remark-gfm v4）在 standalone 模式下無法載入
 
 **解法**：移除套件或降版；安裝新套件前確認是否為 ESM-only（package.json 有 `"type": "module"`）
 
-**原因二**：Build 時錯誤未被發現
+**原因三**：Build 時錯誤未被發現
 
 **解法**：推送前先執行 `npm run build`
 
