@@ -14,10 +14,7 @@ export default function Navigation() {
           </Link>
           <div className="hidden md:flex space-x-8">
             <Link href="/" className="text-gray-600 hover:text-primary transition-colors font-medium">
-              首頁
-            </Link>
-            <Link href="/itinerary" className="text-gray-600 hover:text-primary transition-colors font-medium">
-              詳細行程
+              2026日本行
             </Link>
           </div>
         </div>

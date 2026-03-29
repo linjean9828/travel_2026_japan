@@ -1,5 +1,5 @@
 import { DayItinerary } from "@/data/mockData";
-import { BedDouble, CheckCircle2, Clock, MapPin, Phone, Map } from "lucide-react";
+import { BedDouble, CheckCircle2, Clock, MapPin, Phone, Map, UtensilsCrossed, Star } from "lucide-react";
 
 export default function DailyItineraryCard({ data }: { data: DayItinerary }) {
   return (
@@ -79,6 +79,58 @@ export default function DailyItineraryCard({ data }: { data: DayItinerary }) {
             </div>
           ))}
         </div>
+
+        {data.lunchRecommendations && data.lunchRecommendations.length > 0 && (
+          <div className="mb-10">
+            <h4 className="flex items-center gap-2 text-lg font-bold text-gray-900 mb-4">
+              <div className="bg-orange-100 p-2 rounded-xl">
+                <UtensilsCrossed className="w-5 h-5 text-orange-500" />
+              </div>
+              午餐推薦
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {data.lunchRecommendations.map((r, idx) => (
+                <div key={idx} className="bg-orange-50 border border-orange-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h5 className="font-bold text-gray-900 text-sm leading-snug">{r.name}</h5>
+                    {r.tabelogScore && (
+                      <span className="flex items-center gap-1 bg-orange-400 text-white text-xs font-bold px-2 py-0.5 rounded-full shrink-0">
+                        <Star className="w-3 h-3 fill-white" />
+                        {r.tabelogScore}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-orange-700 font-medium mb-2">{r.cuisine}</p>
+                  <p className="text-xs text-gray-600 leading-relaxed mb-3">{r.recommendation}</p>
+                  <div className="flex flex-wrap gap-1.5 text-xs text-gray-500 mb-3">
+                    {r.priceRange && (
+                      <span className="bg-white border border-orange-100 px-2 py-0.5 rounded-full">💴 {r.priceRange}</span>
+                    )}
+                    {r.hours && (
+                      <span className="bg-white border border-orange-100 px-2 py-0.5 rounded-full">🕐 {r.hours}</span>
+                    )}
+                    {r.phone && (
+                      <span className="flex items-center gap-1 bg-white border border-orange-100 px-2 py-0.5 rounded-full">
+                        <Phone className="w-3 h-3 text-sky-500" />{r.phone}
+                      </span>
+                    )}
+                  </div>
+                  {r.address && (
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.name + ' ' + r.address)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-1.5 w-full bg-white border border-slate-200 hover:bg-green-50 hover:border-green-400 hover:text-green-700 text-gray-600 text-xs font-semibold px-3 py-1.5 rounded-xl transition-colors"
+                    >
+                      <MapPin className="w-3.5 h-3.5 text-green-500" />
+                      在 Google Maps 查看
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-slate-100">
         <div className="bg-slate-50 border border-slate-100 rounded-xl p-6 shadow-sm w-full">
