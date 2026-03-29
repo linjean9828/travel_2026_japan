@@ -1,0 +1,4 @@
+{
+  "node_version": "20",
+  "expose_port": 3000
+}
