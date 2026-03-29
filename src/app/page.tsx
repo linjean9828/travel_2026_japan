@@ -2,17 +2,20 @@ import FeaturedTrip from "@/components/FeaturedTrip";
 import ItineraryOverview from "@/components/ItineraryOverview";
 import Link from "next/link";
 import { ChevronRight, ArrowDown } from "lucide-react";
+import { trips } from "@/data";
 
 export default function Home() {
+  const { hero, itinerary } = trips.japan;
+
   return (
     <>
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop"
-            alt="Japan Tohoku Summer"
-            className="w-full h-full object-cover"
+            src={hero.image}
+            alt={hero.title}
+            className="w-full h-full object-cover animate-subtle-zoom"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/50 to-slate-900/80"></div>
         </div>
@@ -23,15 +26,15 @@ export default function Home() {
             2026 家庭旅遊紀錄
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-8 drop-shadow-2xl leading-tight">
-            2026年青森仙台 <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-blue-200 to-sky-100 drop-shadow-sm">9天8夜旅行規劃</span>
+            {hero.title.split('・')[0]} <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 via-blue-200 to-sky-100 drop-shadow-sm">{hero.days}旅行規劃</span>
           </h1>
           <p className="mt-6 max-w-2xl mx-auto text-xl md:text-2xl text-slate-100 drop-shadow-md leading-relaxed font-medium">
-            9天8夜深度體驗青森睡魔祭、奧入瀨溪流與世界遺產，享受頂級溫泉與在地美食。
+            {hero.description}
           </p>
           <div className="mt-12 flex justify-center">
             <Link
-              href="/itinerary"
+              href="/itinerary/japan"
               className="px-10 py-4 border border-transparent text-lg font-bold rounded-2xl text-white bg-primary hover:bg-sky-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group"
             >
               查看完整行程
@@ -46,10 +49,10 @@ export default function Home() {
       </section>
 
       {/* Featured Trip Section */}
-      <FeaturedTrip />
+      <FeaturedTrip data={hero} href="/itinerary/japan" />
 
       {/* Overview Table Section */}
-      <ItineraryOverview />
+      <ItineraryOverview data={itinerary} href="/itinerary/japan" />
 
     </>
   );

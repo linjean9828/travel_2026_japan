@@ -1,17 +1,25 @@
-import { itineraryData } from "@/data/mockData";
+import { DayItinerary } from "@/data";
 import { List } from "lucide-react";
 import Link from "next/link";
 
-export default function ItineraryOverview() {
+interface ItineraryOverviewProps {
+  data: DayItinerary[];
+  href?: string;
+  title?: string;
+}
+
+export default function ItineraryOverview({ data, href = "/itinerary", title }: ItineraryOverviewProps) {
+  const displayTitle = title || `${data.length}天${data.length - 1}夜 行程總覽`;
+  
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
         <div className="bg-slate-50 px-6 py-5 border-b border-slate-100 flex items-center justify-between flex-wrap gap-4">
           <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <List className="w-6 h-6 text-primary" />
-            9天8夜 行程總覽
+            {displayTitle}
           </h2>
-          <Link href="/itinerary" className="text-sm font-semibold text-primary hover:text-sky-700 hover:underline transition-colors">
+          <Link href={href} className="text-sm font-semibold text-primary hover:text-sky-700 hover:underline transition-colors">
             查看詳細圖文版 &rarr;
           </Link>
         </div>
@@ -28,7 +36,7 @@ export default function ItineraryOverview() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100/80">
-              {itineraryData.map((day) => (
+              {data.map((day) => (
                 <tr key={day.day} className="hover:bg-sky-50/30 transition-colors group">
                   <td className="py-4 px-6 font-bold text-slate-700 whitespace-nowrap">
                     Day {day.day}

@@ -1,43 +1,6 @@
-export interface Restaurant {
-  name: string;
-  cuisine: string;
-  tabelogScore?: number;
-  phone?: string;
-  address?: string;
-  priceRange?: string;
-  hours?: string;
-  recommendation: string;
-}
+import { DayItinerary, HeroItinerary } from "../types";
 
-export interface Attraction {
-  time: string;
-  title: string;
-  description: string;
-  story?: string;
-  phone?: string;
-  mapCode?: string;
-  address?: string;
-}
-
-export interface DayItinerary {
-  day: number;
-  date: string;
-  dayOfWeek: string;
-  title: string;
-  highlight: string;
-  accommodation: string;
-  accommodationDetails?: {
-    address: string;
-    phone: string;
-    mapCode: string;
-  };
-  image: string;
-  attractions: Attraction[];
-  lunchRecommendations?: Restaurant[];
-  tips?: string[];
-}
-
-export const itineraryData: DayItinerary[] = [
+export const japanItinerary: DayItinerary[] = [
   {
     day: 1,
     date: "8/22",
@@ -110,7 +73,7 @@ export const itineraryData: DayItinerary[] = [
     tips: ["自駕提醒：市區景點集中，建議預留充足時間停車", "美食推薦：古川市場海鮮丼"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 青森站前東橫INN 出發", phone: "017-735-1045", address: "青森縣青森市安方1-3-5" },
-      { time: "09:30", title: "三内丸山遺跡", description: "【考古探索】日本最大繩文遺跡、500萬件出土文物、AR技術重現5000年古村", story: "三内丸山遺跡距今約5500〜4000年，規模之大曾被認為「不可能」。遺跡中央有6根木柱形成的巨大建築遺跡，考古學家推測這是古代的瞭望塔或祭禮場所。館內運用最新AR技術，讓你看著眼前的土地，手機螢幕上就浮現出5000年前的古代村落景象。", phone: "017-782-9460", mapCode: "99 313 606*75", address: "青森縣青森市大字三内字丸山305" },
+      { time: "09:30", title: "三内丸山遺跡", description: "【考古探索】日本最大繩文遺跡、500萬件出土文物、AR技術重現5000年古村", story: "三内丸山遺跡距今約5500〜4000年，規模之大曾被認為「不可能」。遺跡中央有6根木柱形成的巨大建築遺跡，考古學家推測這是古代的瞭望塔 or 祭禮場所。館內運用最新AR技術，讓你看著眼前的土地，手機螢幕上就浮現出5000年前的古代村落景象。", phone: "017-782-9460", mapCode: "99 313 606*75", address: "青森縣青森市大字三内字丸山305" },
       { time: "11:30", title: "午餐", description: "【海鮮美食】古川市場海鮮丼自選配菜、在地食材新鮮品嚐" },
       { time: "12:30", title: "青森県立美術館", description: "【藝術欣賞】8公尺奈良美智「青森犬」裝置藝術、當代日本藝術展覽、合影打卡點", story: "這座美術館最知名的是日本藝術家奈良美智創作的巨大装置藝術「青森犬」——一隻高度8公尺的粗獷白狗伏在館前，眼神迷茫又帶著詭異的溫柔。它已是青森最具代表性的地標，許多遊客前來只為了和這隻狗狗合影。館內還展示了當代日本藝術、東北民藝與傳統工藝。", phone: "017-783-3000", mapCode: "99 306 629*13", address: "青森縣青森市安方1-1-8" },
       { time: "15:00", title: "青森灣大橋", description: "【景觀拍攝】655公尺跨灣拱橋、遠眺大間崎和津輕海峽風景", story: "這座跨越青森灣的拱橋全長約655公尺，入夜後藍白燈光倒映海面。晴天午後陽光下，可遠眺大間崎與津輪海峽。", mapCode: "99 306 629*85", address: "青森縣青森市安方1丁目" },
@@ -142,7 +105,7 @@ export const itineraryData: DayItinerary[] = [
   {
     day: 4,
     date: "8/25",
-    dayOfWeek: "二",
+    dayOfWeek: "六",
     title: "奧入瀨溪流深林散策・十和田湖遊覽",
     highlight: "奧入瀨溪流散策→十和田湖",
     accommodation: "青森屋",
@@ -160,7 +123,7 @@ export const itineraryData: DayItinerary[] = [
     lunchRecommendations: [
       {
         name: "司バラ焼き大衆食堂",
-        cuisine: "十和田バラ焼き（牛バラ肉・玉ねぎ鉄板焼き）",
+        cuisine: "十和田バラ焼き（牛バラ肉・玉ねぎ鐵板燒）",
         tabelogScore: 3.48,
         phone: "080-6059-8015",
         address: "青森縣十和田市稲生町15-41",
@@ -211,44 +174,14 @@ export const itineraryData: DayItinerary[] = [
         recommendation: "1944年創業的大館きりたんぽ元祖老鋪。以比内地雞骨架熬製的自製湯底，搭配手工揉製的棒形米棒，在圍爐裏風格的包廂中品嚐，是大館路段評分最高的餐廳。"
       },
       {
-        name: "秋田比内や 大館本店",
+        name: "秋田比內や 大館本店",
         cuisine: "比内地雞親子丼・焼き鳥・きりたんぽ鍋",
         tabelogScore: 3.58,
         phone: "0186-49-7766",
         address: "秋田縣大館市大町21",
         priceRange: "¥1,000〜¥1,999",
         hours: "週一〜六 11:00〜14:00 / 17:00〜22:00（週三公休）",
-        recommendation: "食べログ鶏料理百名店。日本三大地雞之一「比内地雞」的招牌本店，比内地雞親子丼¥1,200，湯頭鮮甜肉質彈牙，適合作午餐選擇。"
-      },
-      {
-        name: "花善",
-        cuisine: "鶏めし御膳（比内地雞駅弁の元祖）",
-        tabelogScore: 3.47,
-        phone: "0186-43-0870",
-        address: "秋田縣大館市御成町1-10-2",
-        priceRange: "¥999〜¥1,500",
-        hours: "食事処 10:00〜14:30（年中無休）",
-        recommendation: "1899年創業，日本三大雞飯便當元祖。在大館站旁的食事處可吃到剛做好的熱騰騰雞飯御膳，用秘傳湯汁炊飯再鋪上甘辛雞肉，是快速用餐的最佳選擇。"
-      },
-      {
-        name: "白龍",
-        cuisine: "盛岡じゃじゃ麵（味噌醬麵）",
-        tabelogScore: 3.59,
-        phone: "019-604-8956",
-        address: "岩手縣盛岡市中央通1-8-3",
-        priceRange: "¥800〜¥999",
-        hours: "11:00〜19:00（週二公休）",
-        recommendation: "盛岡三大麵之一「じゃじゃ麵」的元祖老店（自1952年創業）。特製嚴選大豆做成的熱湯底搭配麵條，獨特的唰唰唰攪拌技法是品嚐這道麵食的精髓，建議邊攪邊品嚐最道地的盛岡味。"
-      },
-      {
-        name: "青の家",
-        cuisine: "盛岡わんこそば（碗子蕎麥麵）",
-        tabelogScore: 3.61,
-        phone: "019-651-1337",
-        address: "岩手縣盛岡市肴町1-29",
-        priceRange: "¥1,500〜¥1,999",
-        hours: "11:00〜17:00（不定期公休）",
-        recommendation: "盛岡三大麵之一「わんこそば」名店。在店員獨特的伴唱聲中，享受一碗接一碗的蕎麥麵快感。蕎麥香氣濃厚，汁液清爽，是體驗岩手鄉土美食最有趣的方式。"
+        recommendation: "食べログ雞料理百名店。日本三大地雞之一「比内地雞」的招牌本店，比内地雞親子丼¥1,200，湯頭鮮甜肉質彈牙，適合作午餐選擇。"
       }
     ]
   },
@@ -317,8 +250,8 @@ export const itineraryData: DayItinerary[] = [
     ],
     lunchRecommendations: [
       {
-        name: "松島 寿司幸",
-        cuisine: "握り寿司・海鮮丼・松島牡蠣（多種調理）",
+        name: "松島 壽司幸",
+        cuisine: "握り壽司・海鮮丼・松島牡蠣（多種調理）",
         tabelogScore: 3.57,
         phone: "022-355-0021",
         address: "宮城縣宮城郡松島町松島町内88-1",
@@ -331,20 +264,10 @@ export const itineraryData: DayItinerary[] = [
         cuisine: "松島あなご丼・牡蠣料理・海鮮定食",
         tabelogScore: 3.48,
         phone: "022-353-2622",
-        address: "宮城縣宮城郡松島町松島仙随24-4-1",
+        address: "宮城縣宮城郡松島町松島仙髄24-4-1",
         priceRange: "¥1,000〜¥1,999",
         hours: "11:30〜15:00 / 17:00〜21:00（週三公休）",
         recommendation: "30年以上歷史的松島名物食堂。每日限量20份的「松島あなご丼」上午就可能售完，建議早點前往。生牡蠣、焼牡蠣、炸牡蠣三吃皆有，CP值極高。"
-      },
-      {
-        name: "焼がきハウス",
-        cuisine: "焼き牡蠣食べ放題",
-        tabelogScore: 3.44,
-        phone: "022-353-2318",
-        address: "宮城縣宮城郡松島町松島普賢堂4-10（松島さかな市場内）",
-        priceRange: "¥2,000〜¥2,999",
-        hours: "平日 10:00〜14:30，週末假日 09:00〜14:30",
-        recommendation: "45分鐘松島牡蠣吃到飽¥2,200，自己動手在鐵網上燒烤，是松島最受歡迎的體驗型用餐。不接受預約、現金限定，松島海岸站步行約8分鐘，建議一開門就去。"
       }
     ]
   },
@@ -361,7 +284,7 @@ export const itineraryData: DayItinerary[] = [
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 東橫INN 仙台西口廣瀨通 出發、先逛仙台朝市", phone: "022-721-1045", address: "宮城縣仙台市青葉區本町1-4-45" },
       { time: "09:30", title: "前往Outlet", description: "【路上轉移】駕車前往仙台港（約20-30分鐘）、為購物做好準備" },
-      { time: "10:00", title: "三井OUTLET PARK 仙台港", description: "【全日購物】120+家品牌、外國遊客護照優惠券、海邊購物體驗", story: "仙台港Outlet緊鄰太平洋，是日本少數能邊購物邊看海的Outlet。外國遊客憑護照可在服務中心領取專屬優惠冊，部分品牌折扣再疊加，等於在已打折的商品上又多扣一輪，很多人說這裡比市區免稅店還划算。", phone: "022-355-8800", mapCode: "21 689 575*24", address: "宮城縣仙台市宮城野區中野3-7-2" },
+      { time: "10:00", title: "三井OUTLET PARK 仙台港", description: "【全日購物】120+家品牌、外國遊客護照優惠券、海邊購物體驗", story: "仙台港Outlet緊鄰太平洋，是日本少數能邊購物邊看海的Outlet。外國遊客憑護照可在服務中心領取專屬優惠冊，部分品牌折扣再疊加，等於在已打折的商品上又多扣一輪，很多人說這裡比市區免稅店還劃算。", phone: "022-355-8800", mapCode: "21 689 575*24", address: "宮城縣仙台市宮城野區中野3-7-2" },
       { time: "12:00", title: "午餐", description: "【購物中餐】Outlet內美食街選擇多、不中斷購物時間" },
       { time: "15:00", title: "下午茶", description: "【休息充電】Outlet內咖啡廳小憩、恢復體力回血" },
       { time: "17:00", title: "繼續購物", description: "【最後衝刺】把握Outlet營業時間最後時段、掃尾採購紀念品" },
@@ -390,10 +313,11 @@ export const itineraryData: DayItinerary[] = [
   }
 ];
 
-export const heroItinerary = {
-  title: "2026年夏季旅遊",
+export const japanHero: HeroItinerary = {
+  title: "2026年夏季旅遊・日本東北巡禮",
   image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop",
   price: "NT$ 45,900 起",
   days: "9天8夜",
   date: "2026年8月22日(六) - 8月30日(日)",
+  description: "9天8夜深度體驗青森睡魔祭、奧入瀨溪流與世界遺產，享受頂級溫泉與在地美食。",
 };

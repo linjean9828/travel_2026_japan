@@ -11,6 +11,19 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: {
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
+        },
+      },
+      animation: {
+        "subtle-zoom": "subtle-zoom 20s ease-in-out infinite",
+      },
+      keyframes: {
+        "subtle-zoom": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.08)" },
+        },
       },
     },
   },

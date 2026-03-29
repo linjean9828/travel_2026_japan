@@ -13,8 +13,11 @@ export default function Navigation() {
             </span>
           </Link>
           <div className="hidden md:flex space-x-8">
-            <Link href="/" className="text-gray-600 hover:text-primary transition-colors font-medium">
+            <Link href="/" className="text-gray-600 hover:text-primary transition-colors font-medium underline underline-offset-8 decoration-2 decoration-transparent hover:decoration-primary">
               2026日本行
+            </Link>
+            <Link href="/germany-switzerland" className="text-gray-600 hover:text-primary transition-colors font-medium underline underline-offset-8 decoration-2 decoration-transparent hover:decoration-primary">
+              2026德瑞行
             </Link>
           </div>
         </div>
