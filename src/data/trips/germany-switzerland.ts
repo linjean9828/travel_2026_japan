@@ -39,7 +39,8 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
     dayOfWeek: "六",
     title: "壁畫童話與洛可可藝術之巔",
     highlight: "慕尼黑→奧伯拉瑪高（壁畫村）→威斯教堂 (世界遺產)→南德小鎮",
-    accommodation: "南德風情景觀飯店",
+    accommodation: "Luitpoldpark-Hotel（福森）",
+    accommodationDetails: { address: "Bahnhofstraße 1-3, 87629 Füssen, Germany", phone: "+49 8362 904-0", mapCode: "-" },
     image: "/images/itinerary/wieskirche.png",
     tips: ["步行提醒：奧伯拉瑪高適合慢慢散步，穿雙好走的鞋", "防曬注意：戶外活動時間較長，注意阿爾卑斯地區的陽光"],
     attractions: [
@@ -87,7 +88,8 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
     dayOfWeek: "日",
     title: "迪士尼夢幻城堡與蘇黎世湖畔散策",
     highlight: "新天鵝堡→波登湖渡輪→蘇黎世湖→蘇黎世市區觀光",
-    accommodation: "蘇黎世精品飯店",
+    accommodation: "harry's home Zürich Limmattal（蘇黎士）",
+    accommodationDetails: { address: "Industriestrasse 160/162, 8957 Spreitenbach, Switzerland", phone: "+41 44 797 52 66", mapCode: "-" },
     image: "/images/itinerary/neuschwanstein.png",
     tips: ["預約提醒：新天鵝堡遊客眾多，需配合預約時間提早抵達", "跨境提醒：今日將由德國進入瑞士，注意貨幣與電壓的細微差異"],
     attractions: [
@@ -150,7 +152,8 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
     dayOfWeek: "一",
     title: "阿爾卑斯萬年冰川與垂影獅子之淚",
     highlight: "蘇黎世→鐵力士山 (360度旋轉纜車)→盧森 (卡貝爾橋 / 獅子紀念碑)",
-    accommodation: "瑞士山城小鎮旅館",
+    accommodation: "Seehotel Kastanienbaum（盧森）",
+    accommodationDetails: { address: "St. Niklausenstrasse 105, 6047 Kastanienbaum, Switzerland", phone: "+41 41 340 03 40", mapCode: "-" },
     image: "/images/itinerary/jungfraujoch.png",
     tips: ["低溫提醒：鐵力士山山頂即便夏季也十分寒冷，請準備厚外套", "墨鏡必備：雪地陽光反射強烈，請務必佩戴墨鏡保護眼睛"],
     attractions: [
@@ -205,7 +208,8 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
     dayOfWeek: "二",
     title: "歐洲之巔與噴泉之都的邂逅",
     highlight: "格林德瓦→少女峰 (登山火車)→茵特拉根→伯恩 (世界遺產老城)",
-    accommodation: "瑞德邊境景觀飯店",
+    accommodation: "Hotel Meilenstein（朗根塔爾）",
+    accommodationDetails: { address: "Lotzwilstrasse 66, 4900 Langenthal, Switzerland", phone: "+41 62 919 18 18", mapCode: "-" },
     image: "/images/itinerary/lucerne.png",
     tips: ["高山症預防：在少女峰頂行動宜緩慢，多喝水，避免劇烈運動", "購物提醒：茵特拉根是購買瑞士名錶與纪念品的首選站"],
     attractions: [
@@ -271,7 +275,8 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
     dayOfWeek: "三",
     title: "黑森林翠湖與亞爾薩斯古蹟響宴",
     highlight: "黑森林蒂蒂湖→史特拉斯堡 (主教座堂 / 卡梅澤爾府邸)",
-    accommodation: "德法邊境古典飯店",
+    accommodation: "Sofitel Strasbourg Grande Île（史特拉斯堡）",
+    accommodationDetails: { address: "4 Place Saint Pierre le Jeune, 67000 Strasbourg, France", phone: "+33 3 88 15 49 00", mapCode: "-" },
     image: "/images/itinerary/strasbourg.png",
     tips: ["美食推薦：蒂蒂湖必嚐黑森林蛋糕，史特拉斯堡推薦法式燉肉鍋", "免稅提醒：史特拉斯堡是法國境內，可注意不同國家的退稅門檻"],
     attractions: [
@@ -319,7 +324,8 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
     dayOfWeek: "四",
     title: "海德堡之戀與中世紀的中世紀",
     highlight: "海德堡古堡→羅騰堡 (中世紀古城區體驗)",
-    accommodation: "羅騰堡老城特色旅館",
+    accommodation: "Altes Brauhaus（羅騰堡）",
+    accommodationDetails: { address: "Wenggasse 24, 91541 Rothenburg ob der Tauber, Germany", phone: "+49 9861 9780", mapCode: "-" },
     image: "/images/itinerary/heidelberg.png",
     tips: ["攝影點推薦：海德堡古堡大平台可俯瞰内卡河全景", "羅騰堡提醒：老城區石板路不平整，大型行李盡量留在車上"],
     attractions: [
@@ -370,7 +376,8 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
     dayOfWeek: "五",
     title: "帝國遺產與現代工藝巔峰",
     highlight: "羅騰堡→紐倫堡→慕尼黑 (BMW 世界 / 市區觀光)",
-    accommodation: "德法邊境精品飯店",
+    accommodation: "The Westin Grand Munich（慕尼黑）",
+    accommodationDetails: { address: "Arabellastraße 6, 81925 München, Germany", phone: "+49 89 92640", mapCode: "-" },
     image: "/images/itinerary/rothenburg.png",
     tips: ["購物最後衝刺：慕尼黑瑪麗恩廣場附近有各大名牌百貨", "參觀提醒：BMW 世界主要為靜態展示，對汽車愛好者是朝聖之地"],
     attractions: [
@@ -462,7 +469,7 @@ export const germanySwitzerlandItinerary: DayItinerary[] = [
 
 export const germanySwitzerlandHero: HeroItinerary = {
   title: "2026德瑞・最美少女峰、全覽鐵力士山、夢幻新天鵝堡、童話亞爾薩斯10日",
-  image: "/images/itinerary/neuschwanstein.png",
+  image: "https://images.unsplash.com/photo-1763608342433-20124071eb29?q=80&w=1600&auto=format&fit=crop",
   price: "NT$ 115,900 起",
   days: "9天8夜",
   date: "2026年6月5日(五) - 6月13日(六)",

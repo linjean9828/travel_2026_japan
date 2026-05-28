@@ -3,7 +3,9 @@
     "allow": [
       "Bash(docker rm:*)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3002)",
-      "Bash(docker stop:*)"
+      "Bash(docker stop:*)",
+      "Bash(Get-Content \"C:\\\\Users\\\\jenni\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Project-travel-site\\\\33e63dc4-9342-467f-9566-dc576f707df9\\\\tasks\\\\b9nkuwuo2.output\" -Tail 20)",
+      "WebFetch(domain:unsplash.com)"
     ]
   }
 }

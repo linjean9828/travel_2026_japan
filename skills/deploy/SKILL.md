@@ -7,11 +7,11 @@ description: "Use this skill when deploying the travel-site project to GitHub an
 
 ## 專案基本資訊
 
-- **框架**：Next.js 14.2.3（App Router）
-- **部署平台**：Zeabur（容器化部署）
+- **框架**：Next.js 14.2.35（App Router）
+- **部署平台**：Render（Node.js Web Service）
 - **GitHub Repo**：linjean9828/travel_2026_japan
-- **正式網址**：https://japan-travel-2026.zeabur.app
-- **本地開發**：`npm run dev`（通常在 localhost:3001）
+- **正式網址**：https://travel-2026-japan.onrender.com
+- **本地開發**：`npm run dev`（localhost:3000）
 
 ---
 
@@ -148,8 +148,9 @@ rothenburg.png, strasbourg.png, wieskirche.png
 ## 頁面路由結構
 
 ```
-/                          首頁（日本行）
-/germany-switzerland       德瑞行首頁
+/                          首頁（德瑞行）
+/japan                     日本行首頁
+/germany-switzerland       德瑞行（同首頁，保留舊路由）
 /itinerary/[tripId]        行程詳細頁（japan / germanySwitzerland）
 /notes/prompt              提示詞功能
 /notes/investment          投資論文

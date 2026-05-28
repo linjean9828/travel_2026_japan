@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, ChevronDown } from "lucide-react";
+import { MapPin, ChevronDown, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
 export default function Navigation() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,12 +29,14 @@ export default function Navigation() {
               WangFamilyTravel
             </span>
           </Link>
+
+          {/* 桌機選單 */}
           <div className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-gray-600 hover:text-primary transition-colors font-medium underline underline-offset-8 decoration-2 decoration-transparent hover:decoration-primary">
-              2026日本行
-            </Link>
-            <Link href="/germany-switzerland" className="text-gray-600 hover:text-primary transition-colors font-medium underline underline-offset-8 decoration-2 decoration-transparent hover:decoration-primary">
               2026德瑞行
+            </Link>
+            <Link href="/japan" className="text-gray-600 hover:text-primary transition-colors font-medium underline underline-offset-8 decoration-2 decoration-transparent hover:decoration-primary">
+              2026日本行
             </Link>
             <div ref={dropdownRef} className="relative">
               <button
@@ -63,8 +66,56 @@ export default function Navigation() {
               )}
             </div>
           </div>
+
+          {/* 手機漢堡按鈕 */}
+          <button
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="開啟選單"
+          >
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
+
+      {/* 手機下拉選單 */}
+      {mobileOpen && (
+        <div className="md:hidden bg-white border-t border-slate-100 shadow-lg">
+          <div className="px-4 py-3 space-y-1">
+            <Link
+              href="/"
+              className="block px-3 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-sky-50 hover:text-primary transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              2026德瑞行
+            </Link>
+            <Link
+              href="/japan"
+              className="block px-3 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-sky-50 hover:text-primary transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              2026日本行
+            </Link>
+            <div className="px-3 py-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+              2026讀書筆記
+            </div>
+            <Link
+              href="/notes/prompt"
+              className="block px-3 py-2.5 pl-6 rounded-lg text-gray-700 font-medium hover:bg-sky-50 hover:text-primary transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              提示詞功能
+            </Link>
+            <Link
+              href="/notes/investment"
+              className="block px-3 py-2.5 pl-6 rounded-lg text-gray-700 font-medium hover:bg-sky-50 hover:text-primary transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              投資論文
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

@@ -26,7 +26,7 @@ export default function GermanySwitzerland() {
             <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
             2026 歐洲之巔巡禮
           </div>
-          <h1 className="text-5xl md:text-7xl font-black text-white tracking-tight mb-8 drop-shadow-2xl leading-tight">
+          <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-8 drop-shadow-2xl leading-tight">
             {hero.title.split('・')[0]} <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-blue-100 to-sky-100 drop-shadow-sm italic font-serif">{hero.title.split('・')[1]}</span>
           </h1>

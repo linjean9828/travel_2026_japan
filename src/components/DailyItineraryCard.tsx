@@ -1,8 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DayItinerary, Attraction } from "@/data";
 import { BedDouble, CheckCircle2, Clock, MapPin, Phone, Map, UtensilsCrossed, Star, PlusCircle, MinusCircle, BookOpen, User, Film, ScrollText } from "lucide-react";
+
+function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <>
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={alt}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === current ? "opacity-100" : "opacity-0"}`}
+        />
+      ))}
+      {images.length > 1 && (
+        <div className="absolute bottom-14 right-4 flex gap-1.5 z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-1.5 h-1.5 rounded-full transition-all ${i === current ? "bg-white w-4" : "bg-white/50"}`}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
 
 function AttractionItem({ attr }: { attr: Attraction }) {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -176,15 +212,15 @@ function AttractionItem({ attr }: { attr: Attraction }) {
 }
 
 export default function DailyItineraryCard({ data }: { data: DayItinerary }) {
+  const bannerImages = Array.from(new Set(
+    [data.image, ...data.attractions.map(a => a.image).filter(Boolean) as string[]]
+  ));
+
   return (
     <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden mb-12" id={`day-${data.day}`}>
       {/* 景點圖片橫幅 */}
       <div className="relative h-56 overflow-hidden">
-        <img
-          src={data.image}
-          alt={data.title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-        />
+        <ImageCarousel images={bannerImages} alt={data.title} />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
         <div className="absolute top-4 left-4 flex items-center gap-2">
           <span className="bg-primary text-white font-bold px-4 py-1.5 rounded-full text-sm shadow-md">
