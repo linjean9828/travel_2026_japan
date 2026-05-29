@@ -1,33 +1,14 @@
 ﻿// ========================================
 // API URL 設定說明：
 // ========================================
-// 自動判斷環境並設定正確的 API URL
-// 1. 本地開發 (file:// 或 Live Server): http://localhost:5001
-// 2. Zeabur 生產環境: 使用相對路徑 (同源)
+// 固定使用同源相對路徑，由 Next.js API Routes 提供服務
+// /api/divination/health 和 /api/divination/chat
+// 本地開發和生產環境（Zeabur）均使用此設定
 // ========================================
 
-let API_URL = '';
+const API_URL = '';
 
-// 判斷是否為本地開發環境
-const isFileProtocol = window.location.protocol === 'file:';
-const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-const isFlaskPort = window.location.port === '5001';
-
-if (isFileProtocol) {
-    // 檔案直接開啟
-    API_URL = 'http://localhost:5000';
-    console.log('🔧 環境: 檔案直接開啟 (file://)');
-} else if (isLocalhost && !isFlaskPort) {
-    // Live Server 或其他本地開發服務器
-    API_URL = 'http://localhost:5000';
-    console.log('🔧 環境: 本地開發服務器 (Live Server)');
-} else {
-    // 生產環境 (Zeabur) 或 Flask 直接服務
-    API_URL = '';
-    console.log('🔧 環境: 生產環境或 Flask 服務器');
-}
-
-console.log('🔗 API URL 設定為:', API_URL || '(同源相對路徑)');
+console.log('🔗 API URL 設定為: (同源相對路徑 — Next.js API Routes)');
 
 // 等待 DOM 完全載入
 document.addEventListener('DOMContentLoaded', function () {

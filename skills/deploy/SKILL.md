@@ -8,9 +8,9 @@ description: "Use this skill when deploying the travel-site project to GitHub an
 ## 專案基本資訊
 
 - **框架**：Next.js 14.2.35（App Router）
-- **部署平台**：Zeabur（buildpack，非 Docker）
+- **部署平台**：render（buildpack，非 Docker）
 - **GitHub Repo**：linjean9828/travel_2026_japan
-- **正式網址**：https://japan-travel-2026.zeabur.app
+- **正式網址**：https://travel-2026-japan.onrender.com/
 - **本地前端**：`npm run dev`（localhost:3000）
 - **本地後端**：`python3.13 src/backend/app.py`（localhost:5000）
 
