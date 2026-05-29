@@ -10,6 +10,7 @@ export default function Navigation() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!dropdownOpen) return;
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setDropdownOpen(false);
@@ -17,7 +18,7 @@ export default function Navigation() {
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [dropdownOpen]);
 
   return (
     <nav className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 border-b border-white/20 shadow-sm">
@@ -40,6 +41,7 @@ export default function Navigation() {
             </Link>
             <div ref={dropdownRef} className="relative">
               <button
+                type="button"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center gap-1 text-gray-600 hover:text-primary transition-colors font-medium"
               >
@@ -47,7 +49,7 @@ export default function Navigation() {
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
               </button>
               {dropdownOpen && (
-                <div className="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
+                <div className="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden z-50">
                   <Link
                     href="/notes/prompt"
                     className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-sky-50 hover:text-primary transition-colors"
@@ -61,6 +63,13 @@ export default function Navigation() {
                     onClick={() => setDropdownOpen(false)}
                   >
                     投資論文
+                  </Link>
+                  <Link
+                    href="/notes/iching"
+                    className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-sky-50 hover:text-primary transition-colors border-t border-slate-100"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    易經學習
                   </Link>
                 </div>
               )}
@@ -112,6 +121,13 @@ export default function Navigation() {
               onClick={() => setMobileOpen(false)}
             >
               投資論文
+            </Link>
+            <Link
+              href="/notes/iching"
+              className="block px-3 py-2.5 pl-6 rounded-lg text-gray-700 font-medium hover:bg-sky-50 hover:text-primary transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              易經學習
             </Link>
           </div>
         </div>

@@ -29,3 +29,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# python
+**/__pycache__/
+*.pyc
+*.pyo
+
+# secrets
+etc/secrets/

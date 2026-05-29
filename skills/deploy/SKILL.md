@@ -8,10 +8,11 @@ description: "Use this skill when deploying the travel-site project to GitHub an
 ## 專案基本資訊
 
 - **框架**：Next.js 14.2.35（App Router）
-- **部署平台**：Render（Node.js Web Service）
+- **部署平台**：Zeabur（buildpack，非 Docker）
 - **GitHub Repo**：linjean9828/travel_2026_japan
-- **正式網址**：https://travel-2026-japan.onrender.com
-- **本地開發**：`npm run dev`（localhost:3000）
+- **正式網址**：https://japan-travel-2026.zeabur.app
+- **本地前端**：`npm run dev`（localhost:3000）
+- **本地後端**：`python3.13 src/backend/app.py`（localhost:5000）
 
 ---
 
@@ -21,98 +22,74 @@ description: "Use this skill when deploying the travel-site project to GitHub an
 ```bash
 npm run build
 ```
-- ✅ 必須通過才能繼續
+- 必須通過才能繼續
 - 確認所有頁面無 TypeScript 錯誤
 
-### Step 2 — Docker 本地測試（完整驗證）
+### Step 2 — Commit & Push（不含 env）
 ```bash
-docker build -t travel-site .
-docker run -d -p 3002:3000 -e PORT=3000 --name travel-test travel-site
-# 瀏覽器確認 http://localhost:3002 正常後
-docker stop travel-test && docker rm travel-test
-```
-- Port 3000 通常被 dev server 佔用，改用 3002 對應容器內 3000
-
-### Step 3 — Commit & Push
-```bash
-git add <changed files>
+git add <changed files>   # 不要 git add etc/
 git commit -m "feat/fix: 說明變更內容"
 git push origin main
 ```
 - Zeabur 偵測到 push 後自動重新部署
+- `etc/secrets/.env` 已被 `.gitignore` 規則 `.env` 排除，不會上傳
 
 ---
 
 ## 架構說明
 
-### Next.js Standalone 模式
-`next.config.mjs` 啟用 `output: "standalone"`，產生自包含的伺服器：
-```
-.next/standalone/server.js   ← 啟動入口
-.next/static/                ← 靜態資源（需手動複製）
-public/                      ← 本地圖片（需手動複製）
-```
+### Next.js（前端）
+- Zeabur buildpack 自動偵測 Next.js，無需 Dockerfile
+- `public/` 靜態資源（含 `public/divination/`）隨 build 一起部署
 
-### Dockerfile 重點
-```dockerfile
-# 多階段建置：deps → builder → runner
-COPY --from=builder /app/public ./public          # 本地圖片
-COPY --from=builder /app/.next/standalone ./      # standalone server
-COPY --from=builder /app/.next/static ./.next/static
+### Flask（後端）- `src/backend/`
+- Blueprint 架構，單一入口 `app.py`
+- 目前啟用：`blueprints/divination/api.py`（易經占卜，使用 OpenAI）
+- 選擇性啟用：`blueprints/astro/`、`blueprints/tarot/`（try/except 保護）
+- **本地啟動**：
+  ```powershell
+  # 先殺舊程序
+  Get-Process python* -ErrorAction SilentlyContinue | Stop-Process -Force
+  # 啟動
+  Start-Process "python3.13" -ArgumentList "src/backend/app.py" -WorkingDirectory "src/backend"
+  ```
+- 健康檢查：`GET http://localhost:5000/health`
 
-CMD ["sh", "-c", "HOSTNAME=0.0.0.0 node server.js"]
-```
+### 環境變數
+- 檔案位置：`etc/secrets/.env`（gitignored）
+- 載入方式：`load_dotenv(Path(__file__).resolve().parent... / 'etc' / 'secrets' / '.env')`
+- 必要的 key：`OPENAI_API_KEY`
 
-**關鍵：**
-- `public/` 必須手動複製，standalone 不會自動包含
-- CMD 使用 shell 形式，確保 Zeabur 動態注入的 `PORT` 可正確讀取
-- `HOSTNAME=0.0.0.0` 確保容器對外可連線
+### Windows SSL 問題（本地開發）
+- OpenAI / httpx 在 Windows 上可能出現 `CERTIFICATE_VERIFY_FAILED`
+- 解法：`api.py` 頂部已加入 `truststore.inject_into_ssl()`，使用 Windows 憑證庫
 
 ---
 
 ## 常見錯誤與解法
 
-### 502 Bad Gateway
-**原因**：Next.js 沒有監聽 Zeabur 指定的 PORT 或 HOSTNAME 綁定錯誤
-
-**解法**：確認 Dockerfile CMD 為：
-```dockerfile
-CMD ["sh", "-c", "HOSTNAME=0.0.0.0 node server.js"]
-```
-
-### BackOff: Back-off restarting failed container（容器崩潰循環）
-**原因一**：缺少 `.dockerignore`，本地的 `node_modules`、`.next` 被複製進 Docker builder，污染 build 產物
-
-**解法**：確保專案根目錄有 `.dockerignore`，內容至少包含：
-```
-node_modules
-.next
-.git
-```
-
-**原因二**：ESM-only 套件（如 react-markdown v10、remark-gfm v4）在 standalone 模式下無法載入
+### BackOff: Back-off restarting failed container
+**原因**：ESM-only 套件（如 react-markdown v10、remark-gfm v4）在 standalone 模式下無法載入
 
 **解法**：移除套件或降版；安裝新套件前確認是否為 ESM-only（package.json 有 `"type": "module"`）
 
-**原因三**：Build 時錯誤未被發現
+### Flask 啟動失敗：ModuleNotFoundError
+**原因**：`app.py` 直接 import 不存在的 blueprint（astro、tarot）
 
-**解法**：推送前先執行 `npm run build`
+**解法**：確認 `app.py` 中 astro/tarot 的 import 包在 `try/except ImportError: pass` 內；divination 是必要 import。
 
-### 本地圖片不顯示（public/ 資料夾）
-**原因**：standalone 模式不自動包含 `public/`
-
-**解法**：Dockerfile 已處理（見上方 COPY 指令）；若仍有問題確認 Dockerfile 中的複製步驟
-
-### npm error: Cannot find module 'promise-retry'
-**原因**：Zeabur buildpack 嘗試執行 `npm update -g npm`，npm 環境損壞
-
-**解法**：使用 Dockerfile 繞過 buildpack，或在 `package.json` 指定 engines：
-```json
-"engines": {
-  "node": ">=20.0.0",
-  "npm": ">=10.0.0"
+### Flask port 佔用（多個舊 python3.13 程序）
+```powershell
+netstat -ano | Select-String ":5000 " | ForEach-Object {
+  $pid = ($_ -split "\s+")[-1]
+  Stop-Process -Id $pid -Force -ErrorAction SilentlyContinue
 }
 ```
+
+### Windows CP950 UnicodeEncodeError
+**原因**：`print()` 含 emoji，Windows console 編碼不支援
+
+**解法**：移除 print 中的 emoji，改用純 ASCII 文字
 
 ---
 
@@ -123,25 +100,21 @@ node_modules
 - `remark-gfm` v4+
 - 其他 `"type": "module"` 的套件
 
-### 已安裝套件
-- `lucide-react` ^0.395.0
-- `@tailwindcss/typography`（tailwind.config.ts 中以 `require()` 載入）
-
 ---
 
-## 靜態圖片管理
+## 靜態資源
 
-本地圖片存放於 `public/images/itinerary/`：
+### 行程圖片 `public/images/itinerary/`
 ```
 bmw.png, heidelberg.png, jungfraujoch.png
 lucerne.png, neuschwanstein.png, oberammergau.png
 rothenburg.png, strasbourg.png, wieskirche.png
 ```
 
-**使用規則**：
-- 路徑格式：`/images/itinerary/xxx.png`
-- 優先使用本地圖片（Unsplash 特定 ID 可能失效）
-- 新增景點圖片時一併加入此資料夾
+### 占卜室前端 `public/divination/`
+- `index.html` — 占卜室主頁（"回首頁" 連結已改為 `/`）
+- `style.css`, `divination.css`, `divination.js`, `script.js`
+- 存取路徑：`/divination/index.html`
 
 ---
 
@@ -154,8 +127,18 @@ rothenburg.png, strasbourg.png, wieskirche.png
 /itinerary/[tripId]        行程詳細頁（japan / germanySwitzerland）
 /notes/prompt              提示詞功能
 /notes/investment          投資論文
+/notes/iching              易經學習（含「前往占卜室」連結）
+/divination/index.html     占卜室（靜態 HTML，Next.js public/ 服務）
+```
+
+API 路由（Flask localhost:5000）：
+```
+GET  /health
+GET  /api/divination/health
+POST /api/divination/cast
+GET  /api/divination/hexagram/<number>
 ```
 
 ---
 
-*最後更新：2026-03*
+*最後更新：2026-05-29*
