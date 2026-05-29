@@ -31,16 +31,17 @@ git add <changed files>   # 不要 git add etc/
 git commit -m "feat/fix: 說明變更內容"
 git push origin main
 ```
-- Zeabur 偵測到 push 後自動重新部署
+- Render 偵測到 push 後自動重新部署
 - `etc/secrets/.env` 已被 `.gitignore` 規則 `.env` 排除，不會上傳
 
 ---
 
 ## 架構說明
 
-### Next.js（前端）
-- Zeabur buildpack 自動偵測 Next.js，無需 Dockerfile
+### Next.js（前端 + API）
+- Render buildpack 自動偵測 Next.js，無需 Dockerfile
 - `public/` 靜態資源（含 `public/divination/`）隨 build 一起部署
+- 占卜 API 已整合為 Next.js API Route（不需 Flask 後端即可在生產環境運作）
 
 ### Flask（後端）- `src/backend/`
 - Blueprint 架構，單一入口 `app.py`
@@ -56,9 +57,9 @@ git push origin main
 - 健康檢查：`GET http://localhost:5000/health`
 
 ### 環境變數
-- 檔案位置：`etc/secrets/.env`（gitignored）
-- 載入方式：`load_dotenv(Path(__file__).resolve().parent... / 'etc' / 'secrets' / '.env')`
-- 必要的 key：`OPENAI_API_KEY`
+- **本地**：`etc/secrets/.env`（gitignored），由 Flask `api.py` 以 `load_dotenv(path)` 載入
+- **生產（Render）**：在 Render Dashboard → Environment 設定 `OPENAI_API_KEY`
+- Next.js API Route 直接讀 `process.env.OPENAI_API_KEY`
 
 ### Windows SSL 問題（本地開發）
 - OpenAI / httpx 在 Windows 上可能出現 `CERTIFICATE_VERIFY_FAILED`
@@ -131,14 +132,19 @@ rothenburg.png, strasbourg.png, wieskirche.png
 /divination/index.html     占卜室（靜態 HTML，Next.js public/ 服務）
 ```
 
-API 路由（Flask localhost:5000）：
+API 路由（Next.js，本地與生產同源）：
+```
+GET  /api/divination/health   → src/app/api/divination/health/route.ts
+POST /api/divination/chat     → src/app/api/divination/chat/route.ts
+```
+
+Flask 本地後端（僅開發用，port 5000）：
 ```
 GET  /health
 GET  /api/divination/health
-POST /api/divination/cast
-GET  /api/divination/hexagram/<number>
+POST /api/divination/chat
 ```
 
 ---
 
-*最後更新：2026-05-29*
+*最後更新：2026-05-30*
