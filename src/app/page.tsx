@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ChevronRight, ArrowDown, MapPin, Calendar } from "lucide-react";
 
 export default function Home() {
-  const { hero, itinerary } = trips.germanySwitzerland;
+  const { hero, itinerary } = trips.japan;
 
   return (
     <div className="bg-slate-50 min-h-screen">
@@ -24,7 +24,7 @@ export default function Home() {
         <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto pt-16">
           <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 backdrop-blur-md text-white border border-white/20 text-sm font-semibold tracking-wide mb-8">
             <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-            2026 歐洲之巔巡禮
+            2026 日本東北巡禮
           </div>
           <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight mb-8 drop-shadow-2xl leading-tight">
             {hero.title.split('・')[0]} <br className="hidden md:block" />
@@ -36,7 +36,7 @@ export default function Home() {
           <div className="mt-12 flex flex-col md:flex-row gap-6 justify-center">
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10 text-white shadow-lg">
               <MapPin className="w-5 h-5 text-sky-300" />
-              <span className="font-semibold">瑞士・德國</span>
+              <span className="font-semibold">青森・岩手・宮城</span>
             </div>
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10 text-white shadow-lg">
               <Calendar className="w-5 h-5 text-sky-300" />
@@ -45,7 +45,7 @@ export default function Home() {
           </div>
           <div className="mt-12 flex justify-center">
             <Link
-              href="/itinerary/germanySwitzerland"
+              href="/itinerary/japan"
               className="px-10 py-4 border border-transparent text-lg font-bold rounded-2xl text-white bg-sky-600 hover:bg-sky-500 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center group"
             >
               查看完整行程
@@ -60,13 +60,13 @@ export default function Home() {
       </section>
 
       {/* Featured Trip Section */}
-      <FeaturedTrip data={hero} href="/itinerary/germanySwitzerland" />
+      <FeaturedTrip data={hero} href="/itinerary/japan" />
 
       {/* Details Table */}
       <ItineraryOverview
         data={itinerary}
-        href="/itinerary/germanySwitzerland"
-        title={`${hero.days} 夢幻行程概覽`}
+        href="/itinerary/japan"
+        title={`${hero.days} 行程概覽`}
       />
 
       {/* Info Banner */}
@@ -74,13 +74,13 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-8">深度探索每一刻</h2>
           <p className="text-slate-400 text-lg mb-10">
-            我們細心編排 2026 年德瑞行的每一個細節，包含自駕路線、阿爾卑斯景觀下午茶與世界遺產地標探訪。
+            我們細心編排 2026 年東北行的每一個細節，包含自駕路線、世界遺產平泉、八甲田秘境與花卷溫泉體驗。
           </p>
           <Link
-            href="/japan"
+            href="/itinerary/germanySwitzerland"
             className="inline-flex items-center gap-2 text-sky-400 hover:text-sky-300 font-bold transition-all border-b border-sky-400 pb-1"
           >
-            先看看 2026 日本行 <ChevronRight className="w-5 h-5" />
+            查看 2026 德瑞行 <ChevronRight className="w-5 h-5" />
           </Link>
         </div>
       </section>
