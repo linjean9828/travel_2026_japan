@@ -20,6 +20,8 @@ export interface Attraction {
   time: string;
   title: string;
   description: string;
+  purpose?: string;
+  activities?: string[];
   story?: string;
   guideNote?: GuideNote;
   foundedYear?: string;
