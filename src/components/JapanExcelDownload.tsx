@@ -1,10 +1,15 @@
 'use client';
 import { japanItinerary } from '@/data/trips/japan';
-import { DayItinerary, Attraction } from '@/data/types';
+import { DayItinerary, Attraction, Restaurant } from '@/data/types';
 import { Download } from 'lucide-react';
 import * as XLSX from 'xlsx';
 
-const SKIP_TITLES = ['從飯店出發', '退房出發', '返回飯店', '返回溫泉', 'Check-in', '出發返回', '出發花卷', '出發仙台', '出發前往', '返程出發', '返回飯店', '前往Outlet', '前往仙台車站', '搭乘仙台空港'];
+const SKIP_TITLES = [
+  '從飯店出發', '退房出發', '返回飯店', '返回溫泉旅館', 'Check-in',
+  '出發返回', '出發花卷', '出發仙台', '出發前往', '返程出發',
+  '前往Outlet', '前往仙台車站', '搭乘仙台空港', '加油、還車',
+  '抵達仙台機場', '起飛賦歸',
+];
 
 function parseMinutes(time: string): number {
   const m = time.match(/^(\d{1,2}):(\d{2})/);
@@ -16,11 +21,29 @@ function isSkip(a: Attraction): boolean {
   return SKIP_TITLES.some(k => a.title.includes(k));
 }
 
+function mapsUrl(query: string): string {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
 function formatAttraction(a: Attraction): string {
-  const parts = [`${a.time} ${a.title}`];
-  if (a.address) parts.push(`地址：${a.address}`);
-  if (a.mapCode) parts.push(`MapCode：${a.mapCode}`);
-  return parts.join('\n');
+  const lines = [`▸ ${a.time} ${a.title}`];
+  if (a.address) lines.push(`  地址：${a.address}`);
+  if (a.phone)   lines.push(`  電話：${a.phone}`);
+  if (a.mapCode) lines.push(`  MapCode：${a.mapCode}`);
+  const query = a.address ? a.address : `${a.title} 日本`;
+  lines.push(`  Google Map：${mapsUrl(query)}`);
+  return lines.join('\n');
+}
+
+function formatRestaurant(r: Restaurant): string {
+  const lines = [`▸ ${r.name}（${r.cuisine}）`];
+  if (r.address)  lines.push(`  地址：${r.address}`);
+  if (r.phone)    lines.push(`  電話：${r.phone}`);
+  if (r.hours)    lines.push(`  營業：${r.hours}`);
+  if (r.priceRange) lines.push(`  價位：${r.priceRange}`);
+  const query = r.address ? r.address : `${r.name} 日本`;
+  lines.push(`  Google Map：${mapsUrl(query)}`);
+  return lines.join('\n');
 }
 
 function getMorning(day: DayItinerary): string {
@@ -48,23 +71,23 @@ function getAfternoon(day: DayItinerary): string {
 }
 
 function getLunch(day: DayItinerary): string {
-  const r = day.lunchRecommendations?.[0];
-  if (r) {
-    const parts = [r.name, r.cuisine];
-    if (r.address) parts.push(r.address);
-    if (r.hours) parts.push(r.hours);
-    return parts.join('\n');
+  if (day.lunchRecommendations && day.lunchRecommendations.length > 0) {
+    return day.lunchRecommendations.map(formatRestaurant).join('\n\n');
   }
   const lunchAttr = day.attractions.find(a => a.title.includes('午餐'));
-  return lunchAttr ? lunchAttr.description.replace(/【.*?】\s*/, '') : '';
+  return lunchAttr ? formatAttraction(lunchAttr) : '';
 }
 
 function getAccommodation(day: DayItinerary): string {
   if (day.accommodation === '-') return '返回台灣';
-  const parts = [day.accommodation];
-  if (day.accommodationDetails?.address) parts.push(day.accommodationDetails.address);
-  if (day.accommodationDetails?.mapCode) parts.push(`MapCode：${day.accommodationDetails.mapCode}`);
-  return parts.join('\n');
+  const d = day.accommodationDetails;
+  const lines = [`▸ ${day.accommodation}`];
+  if (d?.address)  lines.push(`  地址：${d.address}`);
+  if (d?.phone)    lines.push(`  電話：${d.phone}`);
+  if (d?.mapCode)  lines.push(`  MapCode：${d.mapCode}`);
+  const query = d?.address ?? day.accommodation;
+  lines.push(`  Google Map：${mapsUrl(query)}`);
+  return lines.join('\n');
 }
 
 export default function JapanExcelDownload() {
@@ -73,7 +96,7 @@ export default function JapanExcelDownload() {
       '日期': day.date,
       '星期': day.dayOfWeek,
       '上午行程': getMorning(day),
-      '午餐': getLunch(day),
+      '午餐推薦': getLunch(day),
       '下午景點': getAfternoon(day),
       '晚上住宿': getAccommodation(day),
     }));
@@ -82,13 +105,13 @@ export default function JapanExcelDownload() {
     ws['!cols'] = [
       { wch: 8 },
       { wch: 6 },
+      { wch: 65 },
+      { wch: 65 },
+      { wch: 65 },
       { wch: 55 },
-      { wch: 45 },
-      { wch: 55 },
-      { wch: 45 },
     ];
 
-    // 設定所有儲存格自動換行
+    // 全部儲存格：自動換行 + 頂端對齊
     const range = XLSX.utils.decode_range(ws['!ref'] ?? 'A1');
     for (let R = range.s.r; R <= range.e.r; R++) {
       for (let C = range.s.c; C <= range.e.c; C++) {
