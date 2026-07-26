@@ -9,7 +9,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "青森機場租車→青森県立美術館（奈良美智）→A-FACTORY→青森灣大橋夜景",
     accommodation: "青森站前東橫INN（連住3晚）",
     accommodationDetails: { address: "青森縣青森市安方1-3-5", phone: "017-735-1045", mapCode: "99 306 629*85" },
-    image: "https://images.unsplash.com/photo-1574259392081-dbe3c19cd15e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-NEGNNz67l28?q=80&w=1200&auto=format&fit=crop",
     tips: ["自駕提醒：市區景點集中，建議將車停在飯店，利用步行遊覽"],
     attractions: [
       { time: "下午", title: "青森機場租車", description: "【租車手續】機場完成租車手續、領取車鑰匙", phone: "017-739-2000", mapCode: "99 248 242*76", address: "青森縣青森市大谷字小谷1-5" },
@@ -27,7 +27,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "白神山地（UNESCO世界遺產）→十二湖青池（神秘藍）→深浦マグロ海鮮午餐",
     accommodation: "青森站前東橫INN",
     accommodationDetails: { address: "青森縣青森市安方1-3-5", phone: "017-735-1045", mapCode: "99 306 629*85" },
-    image: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-F0yjJuDXBcg?q=80&w=1200&auto=format&fit=crop",
     tips: ["自駕提醒：青森→十二湖約1.5〜2小時，建議9:00準時出發", "青池步道木棧道平坦好走，一圈含周邊湖泊約1.5〜2小時", "深浦マグロ是日本海名物，午餐強烈推薦鮪魚蓋飯或マグロステーキ"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 青森站前東橫INN 出發，沿日本海海岸線南下前往白神山地", phone: "017-735-1045", address: "青森縣青森市安方1-3-5" },
@@ -68,7 +68,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "八甲田山纜車（火山展望）→蔦沼倒影湖→睡魔之家WA RASSE",
     accommodation: "青森站前東橫INN",
     accommodationDetails: { address: "青森縣青森市安方1-3-5", phone: "017-735-1045", mapCode: "99 306 629*85" },
-    image: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-HtKosDpL5to?q=80&w=1200&auto=format&fit=crop",
     tips: ["八甲田山纜車末班下山約16:30，09:30前抵達最從容", "蔦沼步道一圈約40分鐘，建議穿運動鞋", "午餐安排在蔦沼附近八甲田山麓餐廳，不需返回青森市區"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 青森站前東橫INN 出發前往八甲田山", phone: "017-735-1045", address: "青森縣青森市安方1-3-5" },
@@ -109,7 +109,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "奧入瀨溪流深林散策→十和田市現代美術館（草間彌生・奈良美智）",
     accommodation: "十和田王子飯店",
     accommodationDetails: { address: "秋田縣鹿角郡小坂町十和田湖西湖畔", phone: "0176-75-3111", mapCode: "" },
-    image: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-tJgglPFw4e4?q=80&w=1200&auto=format&fit=crop",
     tips: ["自駕提醒：奧入瀨溪流沿線設有多處停車場", "備用方案：若下雨改去「青森縣立美術館」看奈良美智「青森犬」"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 青森站前東橫INN 出發前往奧入瀨溪流", phone: "017-735-1045", address: "青森縣青森市安方1-3-5" },
@@ -149,7 +149,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "十和田王子飯店退房→盛岡冷麵（盛岡三大麵）→花卷溫泉Check-in→溫泉街漫步",
     accommodation: "花卷溫泉之紅葉館飯店（連泊2晚）",
     accommodationDetails: { address: "岩手縣花卷市湯本1-125", phone: "0198-37-2111", mapCode: "141 234 56*11" },
-    image: "https://images.unsplash.com/photo-1480796927426-f609979314bd?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-6nvVHHBWhu4?q=80&w=1200&auto=format&fit=crop",
     tips: ["自駕提醒：十和田湖→盛岡約1.5小時、盛岡→花卷約40分鐘", "盛岡冷麵建議11:30前到店避開午餐尖峰人潮", "花卷溫泉街有足湯可免費泡、伴手禮店集中在湯本通"],
     attractions: [
       { time: "09:00", title: "退房出發", description: "【出發點】早餐後從 十和田王子飯店 退房出發前往盛岡", phone: "0176-75-3111", address: "秋田縣鹿角郡小坂町十和田湖西湖畔" },
@@ -190,7 +190,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "中尊寺森林步道→金色堂（限定御守）→嚴美溪飛天郭公下午茶→花卷溫泉",
     accommodation: "花卷溫泉之紅葉館飯店（連泊2晚）",
     accommodationDetails: { address: "岩手縣花卷市湯本1-125", phone: "0198-37-2111", mapCode: "141 234 56*11" },
-    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-985DmR-rX4A?q=80&w=1200&auto=format&fit=crop",
     tips: ["中尊寺月見坂步道上坡約15分鐘，建議穿運動鞋", "金色堂限定御守在讚衡蔵販售，種類豐富建議預留30分鐘挑選", "飛天郭公用木板敲石頭下單，記得帶零錢（郭公糰子¥300）"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 花卷溫泉之紅葉館飯店 出發前往平泉", phone: "0198-37-2111", address: "岩手縣花卷市湯本1-125" },
@@ -232,7 +232,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "花卷溫泉退房→猊鼻溪峽谷遊船→仙台Check-in→牛舌晚餐",
     accommodation: "東橫INN 仙台西口廣瀨通（連住2晚）",
     accommodationDetails: { address: "宮城縣仙台市青葉區本町1-4-45", phone: "022-721-1045", mapCode: "21 534 56*11" },
-    image: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-P0f7XeeNiZ4?q=80&w=1200&auto=format&fit=crop",
     tips: ["猊鼻溪舟下り全程約90分鐘，建議預訂10:00或10:30場次", "帶零錢投「運玉」祈願（¥100/5顆），投進對岸岩洞據說願望成真", "自駕提醒：猊鼻溪→仙台約1.5小時"],
     attractions: [
       { time: "09:00", title: "退房出發", description: "【出發點】早餐後從 花卷溫泉之紅葉館飯店 退房出發前往猊鼻溪", phone: "0198-37-2111", address: "岩手縣花卷市湯本1-125" },
@@ -310,7 +310,7 @@ export const japanItinerary: DayItinerary[] = [
 
 export const japanHero: HeroItinerary = {
   title: "2026年夏季旅遊・日本東北巡禮",
-  image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070&auto=format&fit=crop",
+  image: "https://images.unsplash.com/photo-tJgglPFw4e4?q=80&w=2070&auto=format&fit=crop",
   price: "NT$ 45,900 起",
   days: "9天8夜",
   date: "2026年8月22日(六) - 8月30日(日)",
