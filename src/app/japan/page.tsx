@@ -1,5 +1,6 @@
 import FeaturedTrip from "@/components/FeaturedTrip";
 import ItineraryOverview from "@/components/ItineraryOverview";
+import JapanExcelDownload from "@/components/JapanExcelDownload";
 import Link from "next/link";
 import { ChevronRight, ArrowDown } from "lucide-react";
 import { trips } from "@/data";
@@ -53,6 +54,9 @@ export default function Japan() {
 
       {/* Overview Table Section */}
       <ItineraryOverview data={itinerary} href="/itinerary/japan" />
+
+      {/* Excel Download */}
+      <JapanExcelDownload />
     </>
   );
 }
