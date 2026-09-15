@@ -9,7 +9,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "青森機場租車→晚餐函太郎→青森灣大橋夜景",
     accommodation: "青森站前東橫INN（連住3晚）",
     accommodationDetails: { address: "青森縣青森市安方1-3-5", phone: "017-735-1045", mapCode: "99 306 629*85" },
-    image: "https://images.unsplash.com/photo-NEGNNz67l28?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/12511805/pexels-photo-12511805.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["自駕提醒：市區景點集中，建議將車停在飯店，利用步行遊覽"],
     attractions: [
       { time: "下午", title: "青森機場租車", description: "【租車手續】機場完成租車手續、領取車鑰匙", phone: "017-739-2000", mapCode: "99 248 242*76", address: "青森縣青森市大谷字小谷1-5" },
@@ -26,7 +26,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "睡魔之家WA RASSE（睡魔祭文化）→A-FACTORY蘋果市集購物→古川市場のっけ丼午餐→麦藁帽子下午茶→晚餐煮干拉麵",
     accommodation: "青森站前東橫INN",
     accommodationDetails: { address: "青森縣青森市安方1-3-5", phone: "017-735-1045", mapCode: "99 306 629*85" },
-    image: "https://images.unsplash.com/photo-F0yjJuDXBcg?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/38471748/pexels-photo-38471748.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["睡魔之家WA RASSE與A-FACTORY皆在青森站徒步圈內，本日行程以步行為主，無需長途開車", "睡魔之家建議上午前往，人潮較少", "A-FACTORY可順道採購蘋果伴手禮，行李較多建議傍晚再返回飯店"],
     attractions: [
       { time: "09:30", title: "從飯店出發", description: "【出發點】早餐後從 青森站前東橫INN 步行前往睡魔之家WA RASSE（約5分鐘）", phone: "017-735-1045", address: "青森縣青森市安方1-3-5" },
@@ -46,7 +46,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "自備午餐→奧入瀨溪流深林散策→晚餐藏壽司",
     accommodation: "青森站前東橫INN",
     accommodationDetails: { address: "青森縣青森市安方1-3-5", phone: "017-735-1045", mapCode: "99 306 629*85" },
-    image: "https://images.unsplash.com/photo-HtKosDpL5to?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/18817609/pexels-photo-18817609.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["中午自備午餐，可在山區或奧入瀨溪流沿線的休憩區享用", "奧入瀨溪流沿線設有多處停車場，方便沿途停靠拍照"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 青森站前東橫INN 出發前往奧入瀨溪流", phone: "017-735-1045", address: "青森縣青森市安方1-3-5" },
@@ -64,7 +64,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "青森出發→十和田市現代美術館（草間彌生・奈良美智）→返回青森Richmond Hotel→晚餐TORANO-IE",
     accommodation: "Richmond Hotel青森",
     accommodationDetails: { address: "青森縣青森市長島1-6-6", phone: "017-732-7655", mapCode: "" },
-    image: "https://images.unsplash.com/photo-tJgglPFw4e4?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/29608796/pexels-photo-29608796.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["自駕提醒：青森市區→十和田市約1.5〜2小時車程，當晚需再開回青森市區過夜"],
     attractions: [
       { time: "10:00", title: "從飯店出發", description: "【出發點】早餐後從 青森站前東橫INN 出發前往十和田市", phone: "017-735-1045", address: "青森縣青森市安方1-3-5" },
@@ -105,7 +105,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "Richmond Hotel青森退房→弘前採蘋果體驗→花卷溫泉Check-in→溫泉街漫步",
     accommodation: "花卷溫泉之紅葉館飯店（連泊2晚）",
     accommodationDetails: { address: "岩手縣花卷市湯本1-125", phone: "0198-37-2111", mapCode: "141 234 56*11" },
-    image: "https://images.unsplash.com/photo-6nvVHHBWhu4?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/28387811/pexels-photo-28387811.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["自駕提醒：青森→弘前約40分鐘、弘前→花卷約2.5〜3小時，本日駕車時間較長", "採蘋果建議事先確認果樹園開放時段與是否需預約", "花卷溫泉街有足湯可免費泡、伴手禮店集中在湯本通"],
     attractions: [
       { time: "09:00", title: "退房出發", description: "【出發點】早餐後從 Richmond Hotel青森 退房出發前往弘前", phone: "017-732-7655", address: "青森縣青森市長島1-6-6" },
@@ -125,7 +125,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "花卷東高等學校（大谷翔平母校）→奧州市大谷翔平稻田藝術→傍晚花卷神社",
     accommodation: "花卷溫泉之紅葉館飯店（連泊2晚）",
     accommodationDetails: { address: "岩手縣花卷市湯本1-125", phone: "0198-37-2111", mapCode: "141 234 56*11" },
-    image: "https://images.unsplash.com/photo-985DmR-rX4A?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/11168849/pexels-photo-11168849.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["花卷東高校是現役學校，參觀請保持安靜、僅在校園外圍拍照，勿打擾學生上課", "建議上午前往，避開學生放學時段人潮", "稻田藝術最佳觀賞期為6月下旬〜8月下旬，記得爬上物見櫓展望台俯瞰全景"],
     attractions: [
       { time: "09:30", title: "從飯店出發", description: "【出發點】早餐後從 花卷溫泉之紅葉館飯店 出發前往花卷東高等學校（約20分鐘）", phone: "0198-37-2111", address: "岩手縣花卷市湯本1-125" },
@@ -145,7 +145,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "花卷溫泉退房→直達仙台→善治郎牛舌午餐→仙台Check-in→晚餐鳥貴族",
     accommodation: "東橫INN 仙台西口廣瀨通（連住2晚）",
     accommodationDetails: { address: "宮城縣仙台市青葉區本町1-4-45", phone: "022-721-1045", mapCode: "21 534 56*11" },
-    image: "https://images.unsplash.com/photo-P0f7XeeNiZ4?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/25686263/pexels-photo-25686263.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["自駕提醒：花卷→仙台約1.5〜2小時車程"],
     attractions: [
       { time: "09:00", title: "退房出發", description: "【出發點】早餐後從 花卷溫泉之紅葉館飯店 退房出發前往仙台", phone: "0198-37-2111", address: "岩手縣花卷市湯本1-125" },
@@ -162,7 +162,7 @@ export const japanItinerary: DayItinerary[] = [
     highlight: "三井OUTLET PARK 仙台港（全日購物）→利久牛舌午餐→一蘭拉麵晚餐",
     accommodation: "東橫INN 仙台西口廣瀨通（連住2晚）",
     accommodationDetails: { address: "宮城縣仙台市青葉區本町1-4-45", phone: "022-721-1045", mapCode: "21 534 56*11" },
-    image: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/33341835/pexels-photo-33341835.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["外國遊客憑護照可至服務中心領取優惠券手冊", "部分店家提供免稅服務", "建議先到服務中心拿地圖，標記想逛的品牌", "週末人潮較多，但8/29是週六，做好心理準備"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】早餐後從 東橫INN 仙台西口廣瀨通 出發、先逛仙台朝市", phone: "022-721-1045", address: "宮城縣仙台市青葉區本町1-4-45" },
@@ -183,7 +183,7 @@ export const japanItinerary: DayItinerary[] = [
     title: "返程・仙台空港起飛",
     highlight: "仙台車站還車→仙台空港線→賦歸",
     accommodation: "-",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/37535047/pexels-photo-37535047.jpeg?auto=compress&cs=tinysrgb&w=1200",
     tips: ["仙台機場免稅店：有Royce生巧克力、東京香蕉、薯條三兄弟等伴手禮"],
     attractions: [
       { time: "09:00", title: "退房出發", description: "【出發點】含早餐、打包行李從 東橫INN 仙台西口廣瀨通 退房", phone: "022-721-1045", address: "宮城縣仙台市青葉區本町1-4-45" },
@@ -198,7 +198,7 @@ export const japanItinerary: DayItinerary[] = [
 
 export const japanHero: HeroItinerary = {
   title: "2026年夏季旅遊・日本東北巡禮",
-  image: "https://images.unsplash.com/photo-tJgglPFw4e4?q=80&w=2070&auto=format&fit=crop",
+  image: "https://images.pexels.com/photos/18817609/pexels-photo-18817609.jpeg?auto=compress&cs=tinysrgb&w=2070",
   price: "NT$ 45,900 起",
   days: "9天8夜",
   date: "2026年8月22日(六) - 8月30日(日)",
