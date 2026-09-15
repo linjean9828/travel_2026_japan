@@ -74,7 +74,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-8">深度探索每一刻</h2>
           <p className="text-slate-400 text-lg mb-10">
-            我們細心編排 2026 年東北行的每一個細節，包含自駕路線、世界遺產平泉、八甲田秘境與花卷溫泉體驗。
+            我們細心編排 2026 年東北行的每一個細節，包含自駕路線、青森睡魔之家祭典文化、大谷翔平母校巡禮與花卷溫泉體驗。
           </p>
           <Link
             href="/itinerary/germanySwitzerland"

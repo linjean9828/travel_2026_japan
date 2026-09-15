@@ -74,7 +74,6 @@ export default function ItineraryPage({ params }: { params: { tripId: string } }
                 {[
                   { city: "青森", days: "Day 1-4", color: "bg-sky-100 text-sky-700" },
                   { city: "花卷", days: "Day 5-6", color: "bg-emerald-100 text-emerald-700" },
-                  { city: "松島", days: "Day 7", color: "bg-violet-100 text-violet-700" },
                   { city: "仙台", days: "Day 7-9", color: "bg-amber-100 text-amber-700" },
                 ].map((stop) => (
                   <span key={stop.city} className={`px-3 py-1.5 rounded-full font-semibold ${stop.color}`}>
