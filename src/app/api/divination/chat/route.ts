@@ -36,7 +36,7 @@ const CHEN_LAOSHI_PERSONA = `
 從而做出更明智的人生選擇。
 
 【回答風格】
-請用溫和、專業、具同理心的語氣回答，像一位值得信賴的長輩或導師。
+你是一位精通文王八卦、孔子易傳的易學大師。請依據用戶起出的【本卦】與【變卦】，先給出客觀的爻辭詮釋，再針對用戶詢問的「事業/感情/健康」情境，給出充滿哲理、溫暖且具體的行動指引。請避免江湖術士的迷信口吻。
 沒有找到答案，請回答"秘密"
 `;
 
@@ -85,6 +85,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
       4: '九四：或躍在淵，無咎。（把握良機，進退自如，審時度勢）',
       5: '九五：飛龍在天，利見大人。（登峰造極，大展宏圖，位居尊位）',
       6: '上九：亢龍有悔。（物極必反，知進不知退，恐有悔恨）',
+      7: '用九：見群龍无首，吉。',
     },
   },
   '坤坤': {
@@ -99,6 +100,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
       4: '六四：括囊，無咎無譽。（謹言慎行，守口如瓶，明哲保身）',
       5: '六五：黃裳，元吉。（中正柔順，謙虛尊貴，大吉大利）',
       6: '上六：龍戰于野，其血玄黃。（陰陽相爭，兩敗俱傷，局勢混亂）',
+      7: '用六：利永貞。',
     },
   },
   '坎震': {
@@ -181,7 +183,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
       2: '六二：比之自內，貞吉。（發自內心的誠意交往，堅守正道，吉利）',
       3: '六三：比之匪人。（與行為不端者交往，所託非人，應當警惕）',
       4: '六四：外比之，貞吉。（向外結交賢德之人，吉利）',
-      5: '九五：顯比，王用三驅，失前禽。邑人不警戒，吉。（光明正大的親比，寬宏大量，來者不拒去者不追，吉）',
+      5: '九五：顯比，王用三驅，失前禽。邑人不警誡，吉。（光明正大的親比，寬宏大量，來者不拒去者不追，吉）',
       6: '上六：比之無首，凶。（想依附卻找不到領袖，或誠意不足，最終無人理睬，凶）',
     },
   },
@@ -236,7 +238,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
       1: '初六：拔茅茹，以其彙，貞吉亨。（君子道消，相約引退，獨善其身為吉）',
       2: '六二：包承，小人吉，大人否亨。（阿諛奉承小人得志，君子堅持原則雖受困但內心通達）',
       3: '六三：包羞。（同流合污，不知羞恥，處境尷尬）',
-      4: '九四：有命無咎，修列吉。（奉命行事，整頓秩序，可免災禍）',
+      4: '九四：有命無咎，疇離祉。（奉命行事，整頓秩序，可免災禍）',
       5: '九五：休否，大人吉。其亡其亡，繫于苞桑。（終止混亂，居安思危，像綁在桑樹一樣牢固）',
       6: '上九：傾否，先否後喜。（否極泰來，黑暗過去，光明將至）',
     },
@@ -376,7 +378,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
       1: '初九：賁其趾，捨車而徒。（修飾腳趾，捨棄車馬徒步而行，安貧樂道）',
       2: '六二：賁其鬚。（修飾鬍鬚，順應長者，隨勢而為）',
       3: '九三：賁如濡如，永貞吉。（裝飾得光澤亮麗，長久堅守正道吉）',
-      4: '六四：賁如皤如，白馬翰翰。匪寇婚媾。（素雅裝飾，白馬飛馳。不是強盜，是來求婚的，吉）',
+      4: '六四：賁如皤如，白馬翰如。匪寇婚媾。（素雅裝飾，白馬飛馳。不是強盜，是來求婚的，吉）',
       5: '六五：賁于丘園，束帛戔戔，吝，終吉。（在山林園圃中裝飾，禮物雖微薄但心意誠摯，雖有憾終吉）',
       6: '上九：白賁，無咎。（回歸簡約素雅，不加裝飾的本色，無災）',
     },
@@ -416,7 +418,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
     fortune: '中平。真實無虛，順其自然。不可妄動，若心術不正或輕舉妄動必招災禍。',
     lines: {
       1: '初九：無妄，往吉。（心懷誠信，不存虛妄，前行吉利）',
-      2: '六二：不耕獲，不菑亞，則利有攸往。（不存非分之想，不求意外收穫，腳踏實地則利）',
+      2: '六二：不耕獲，不菑畬，則利有攸往。（不存非分之想，不求意外收穫，腳踏實地則利）',
       3: '六三：無妄之災，或繫之牛，行人之得，邑人之災。（意外的災禍，路人牽走牛，村民卻被懷疑偷竊）',
       4: '九四：可貞，無咎。（堅守正道，保持純正，無災）',
       5: '九五：無妄之疾，勿藥有喜。（意外得病，不需亂吃藥，自然會痊癒）',
@@ -431,7 +433,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
     lines: {
       1: '初九：有厲，利已。（有危險，適時停止不前是有利的）',
       2: '九二：輿說輻。（車輪脫落，主動停止行動，順勢而為）',
-      3: '九三：良馬逐，利艱貞。日閑輿衛，利有攸往。（良馬奔馳，艱苦磨練。每日訓練車馬防衛，利於前行）',
+      3: '九三：良馬逐，利艱貞。曰閑輿衛，利有攸往。（良馬奔馳，艱苦磨練。每日訓練車馬防衛，利於前行）',
       4: '六四：童牛之牿，元吉。（給小牛角裝上護木，防患於未然，大吉）',
       5: '六五：豶豕之牙，吉。（閹割野豬使其馴服，從根本消除危害，吉）',
       6: '上九：何天之衢，亨。（道通天際，暢行無阻，大亨通）',
@@ -637,7 +639,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
     num: 41,
     name: '山澤損',
     meaning: '有孚，元吉，無咎，可貞，利有攸往。曷之用，二簋可用享。',
-    fortune: '中平。減損、犧牲。損下益上，為了長遠利益暫時犧牲小我。先難後易。',
+    fortune: '大吉。減損、犧牲。損下益上，為了長遠利益暫時犧牲小我。先難後易。',
     lines: {
       1: '初九：已事遄往，無咎，酌損之。（停下自己的事趕去助人，無災。要量力而為）',
       2: '九二：利貞，征凶，弗損益之。（堅守正道吉，主動出擊凶。不需自我減損就能益人）',
@@ -822,7 +824,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
     fortune: '下下。名不順言不順，感情衝動。違反禮制常規，如飛蛾撲火，結局多不佳。',
     lines: {
       1: '初九：歸妹以娣，跛能履，征吉。（嫁女時陪嫁娣妾，雖地位低如跛者行，但安守本分吉）',
-      2: '九二：眇能視，利幽人的貞。（雖視力不佳但能看，利於在此時堅守貞靜之道）',
+      2: '九二：眇能視，利幽人之貞。（雖視力不佳但能看，利於在此時堅守貞靜之道）',
       3: '六三：歸妹以須，反歸以娣。（急於出嫁而被拒，只好回去做陪嫁，地位低微）',
       4: '九四：歸妹愆期，遲歸有時。（錯過婚期，雖晚嫁，但終有歸宿）',
       5: '六五：帝乙歸妹，其君之袂，不如其娣之袂良，月幾望，吉。（帝乙嫁妹，正室衣著不如陪嫁華麗，但德行如滿月般圓滿，吉）',
@@ -964,7 +966,7 @@ const HEXAGRAMS: Record<string, Hexagram> = {
       1: '初六：濡其尾，吝。（不知深淺，貿然行動，自取其辱）',
       2: '九二：曳其輪，貞吉。（控制速度，堅守中道，吉利）',
       3: '六三：未濟，征凶，利涉大川。（實力不足，強行進攻凶，宜等待時機或借助外力）',
-      4: '九四：貞吉，悔亡，震用伐鬼方，三年有賞。（堅守正道，奮力拼搏，終獲獎賞）',
+      4: '九四：貞吉，悔亡，震用伐鬼方，三年有賞于大國。（堅守正道，奮力拼搏，終獲獎賞）',
       5: '六五：貞吉，無悔，君子之光，有孚，吉。（光大正道，誠信感人，吉利）',
       6: '上九：有孚于飲酒，無咎，濡其首，有孚失是。（安享成果無妨，但若沉溺過度則會壞事）',
     },
@@ -1020,71 +1022,399 @@ function calculateHexagram(num1: number, num2: number, num3: number): Divination
 }
 
 // ============================================================
+// 梅花易數 - 五行、體用、互卦、變卦、類象
+// ============================================================
+
+type WuXing = '金' | '木' | '水' | '火' | '土';
+
+// 三爻由下到上的陰陽組成，1=陽 0=陰
+const TRIGRAM_LINES: Record<string, [number, number, number]> = {
+  乾: [1, 1, 1],
+  兌: [1, 1, 0],
+  離: [1, 0, 1],
+  震: [1, 0, 0],
+  巽: [0, 1, 1],
+  坎: [0, 1, 0],
+  艮: [0, 0, 1],
+  坤: [0, 0, 0],
+};
+
+const LINES_TO_TRIGRAM: Record<string, string> = Object.fromEntries(
+  Object.entries(TRIGRAM_LINES).map(([name, lines]) => [lines.join(''), name])
+);
+
+const TRIGRAM_PROFILE: Record<string, { wuxing: WuXing; direction: string; timing: string; renlun: string; bodyPart: string }> = {
+  乾: { wuxing: '金', direction: '西北', timing: '秋冬之交（約國曆9-11月）', renlun: '父親、長輩、領導、政府、老人', bodyPart: '頭部' },
+  兌: { wuxing: '金', direction: '正西', timing: '秋季（約國曆8月）', renlun: '少女、朋友、口舌是非、飲食娛樂之人', bodyPart: '口、肺' },
+  離: { wuxing: '火', direction: '正南', timing: '夏季（約國曆5月）', renlun: '中女、文人、眼目之人', bodyPart: '眼睛、心臟' },
+  震: { wuxing: '木', direction: '正東', timing: '春季（約國曆2-3月）', renlun: '長男、決策者、行動積極之人', bodyPart: '足部、肝臟' },
+  巽: { wuxing: '木', direction: '東南', timing: '春夏之交（約國曆4-5月）', renlun: '長女、仲介、業務、生意人', bodyPart: '大腿、膽' },
+  坎: { wuxing: '水', direction: '正北', timing: '冬季（約國曆11月）', renlun: '中男、智者、亦可能代表危險或盜賊', bodyPart: '耳朵、腎臟、血液' },
+  艮: { wuxing: '土', direction: '東北', timing: '冬春之交（約國曆12-1月）', renlun: '少男、阻礙者、僧道、不動產相關人士', bodyPart: '手部、鼻子、脾胃' },
+  坤: { wuxing: '土', direction: '西南', timing: '夏秋之交（約國曆6-7月）', renlun: '母親、群眾、農夫、老婦', bodyPart: '腹部、脾胃' },
+};
+
+const WUXING_GENERATES: Record<WuXing, WuXing> = { 木: '火', 火: '土', 土: '金', 金: '水', 水: '木' };
+const WUXING_OVERCOMES: Record<WuXing, WuXing> = { 木: '土', 土: '水', 水: '火', 火: '金', 金: '木' };
+
+type TiYongRelation = '用生體' | '體生用' | '用剋體' | '體剋用' | '比和';
+
+function getTiYongRelation(tiWuxing: WuXing, yongWuxing: WuXing): TiYongRelation {
+  if (tiWuxing === yongWuxing) return '比和';
+  if (WUXING_GENERATES[yongWuxing] === tiWuxing) return '用生體';
+  if (WUXING_GENERATES[tiWuxing] === yongWuxing) return '體生用';
+  if (WUXING_OVERCOMES[yongWuxing] === tiWuxing) return '用剋體';
+  return '體剋用';
+}
+
+const SEASON_WANGXIANG: Record<'春' | '夏' | '秋' | '冬', WuXing[]> = {
+  春: ['木', '火', '水', '金', '土'], // 依序：旺 相 休 囚 死
+  夏: ['火', '土', '木', '水', '金'],
+  秋: ['金', '水', '土', '火', '木'],
+  冬: ['水', '木', '金', '土', '火'],
+};
+
+function getCurrentSeason(): '春' | '夏' | '秋' | '冬' {
+  const month = new Date().getMonth() + 1;
+  if (month >= 1 && month <= 3) return '春';
+  if (month >= 4 && month <= 6) return '夏';
+  if (month >= 7 && month <= 9) return '秋';
+  return '冬';
+}
+
+function getWangXiangState(wuxing: WuXing): '旺' | '相' | '休' | '囚' | '死' {
+  const order = SEASON_WANGXIANG[getCurrentSeason()];
+  const idx = order.indexOf(wuxing);
+  return (['旺', '相', '休', '囚', '死'] as const)[idx] ?? '休';
+}
+
+interface HuGuaBianGua {
+  lowerName: string;
+  upperName: string;
+  hexagram: Hexagram;
+}
+
+// 互卦：取本卦六爻（由下而上）第2-3-4爻為下互，第3-4-5爻為上互
+function getHuGua(lower: Trigram, upper: Trigram): HuGuaBianGua {
+  const allLines = [...TRIGRAM_LINES[lower.name], ...TRIGRAM_LINES[upper.name]];
+  const huLowerName = LINES_TO_TRIGRAM[[allLines[1], allLines[2], allLines[3]].join('')];
+  const huUpperName = LINES_TO_TRIGRAM[[allLines[2], allLines[3], allLines[4]].join('')];
+  const key = `${huUpperName}${huLowerName}`;
+  const hexagram = HEXAGRAMS[key] ?? { num: 0, name: `${huUpperName}${huLowerName}卦`, meaning: '', fortune: '中平' };
+  return { lowerName: huLowerName, upperName: huUpperName, hexagram };
+}
+
+// 變卦：本卦動爻陰陽互換後重新組成的新卦
+function getBianGua(lower: Trigram, upper: Trigram, changingLine: number): HuGuaBianGua {
+  const allLines = [...TRIGRAM_LINES[lower.name], ...TRIGRAM_LINES[upper.name]];
+  const idx = changingLine - 1;
+  allLines[idx] = allLines[idx] === 1 ? 0 : 1;
+
+  const bianLowerName = LINES_TO_TRIGRAM[allLines.slice(0, 3).join('')];
+  const bianUpperName = LINES_TO_TRIGRAM[allLines.slice(3, 6).join('')];
+  const key = `${bianUpperName}${bianLowerName}`;
+  const hexagram = HEXAGRAMS[key] ?? { num: 0, name: `${bianUpperName}${bianLowerName}卦`, meaning: '', fortune: '中平' };
+  return { lowerName: bianLowerName, upperName: bianUpperName, hexagram };
+}
+
+interface MeihuaContext {
+  ti: { name: string; wuxing: WuXing; bodyPart: string };
+  yong: { name: string; wuxing: WuXing; direction: string; timing: string; renlun: string; bodyPart: string };
+  huGua: HuGuaBianGua;
+  bianGua: HuGuaBianGua;
+  relation: TiYongRelation;
+  bianRelation: TiYongRelation;
+  tiWangXiang: string;
+  yongWangXiang: string;
+}
+
+function buildMeihuaContext(result: DivinationResult): MeihuaContext {
+  const { lower_trigram: lower, upper_trigram: upper, changing_line: changingLine } = result;
+
+  // 動爻在下卦（1-3爻）則下卦為用、上卦為體；動爻在上卦（4-6爻）則上卦為用、下卦為體
+  const [tiTrigram, yongTrigram] = changingLine <= 3 ? [upper, lower] : [lower, upper];
+
+  const tiProfile = TRIGRAM_PROFILE[tiTrigram.name];
+  const yongProfile = TRIGRAM_PROFILE[yongTrigram.name];
+  const tiWuxing = tiProfile.wuxing;
+  const yongWuxing = yongProfile.wuxing;
+
+  const huGua = getHuGua(lower, upper);
+  const bianGua = getBianGua(lower, upper, changingLine);
+  const bianWuxing = TRIGRAM_PROFILE[changingLine <= 3 ? bianGua.upperName : bianGua.lowerName].wuxing;
+
+  return {
+    ti: { name: tiTrigram.name, wuxing: tiWuxing, bodyPart: tiProfile.bodyPart },
+    yong: { name: yongTrigram.name, wuxing: yongWuxing, direction: yongProfile.direction, timing: yongProfile.timing, renlun: yongProfile.renlun, bodyPart: yongProfile.bodyPart },
+    huGua,
+    bianGua,
+    relation: getTiYongRelation(tiWuxing, yongWuxing),
+    bianRelation: getTiYongRelation(tiWuxing, bianWuxing),
+    tiWangXiang: getWangXiangState(tiWuxing),
+    yongWangXiang: getWangXiangState(yongWuxing),
+  };
+}
+
+// ============================================================
 // OpenAI 呼叫函數
 // ============================================================
 
-async function getAiInterpretation(question: string, result: DivinationResult): Promise<string> {
+interface DivinationInterpretation {
+  judgment: 'auspicious' | 'neutral' | 'inauspicious';
+  hexagram_overview: string;
+  line_analysis: string;
+  outlook: string;
+  advice: string[];
+}
+
+function fallbackInterpretation(result: DivinationResult, note: string): DivinationInterpretation {
+  return {
+    judgment: 'neutral',
+    hexagram_overview: note,
+    line_analysis: `根據 ${result.hexagram.name} 的卦象，建議您保持${result.hexagram.fortune}的心態。`,
+    outlook: '',
+    advice: [],
+  };
+}
+
+async function getAiInterpretation(question: string, result: DivinationResult): Promise<DivinationInterpretation> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return '（AI 解讀功能需要 OPENAI_API_KEY）\n\n根據卦象，這是一個關於變化與選擇的時刻。建議您保持內心平靜，審慎思考後再做決定。';
+    return fallbackInterpretation(result, '（AI 解讀功能需要 OPENAI_API_KEY）這是一個關於變化與選擇的時刻，建議您保持內心平靜，審慎思考後再做決定。');
   }
 
   const { hexagram, upper_trigram: upper, lower_trigram: lower, changing_line } = result;
 
   const prompt = `
-你是一位精通《易經》象數理、周易卜筮與哲理的當代解卦大師。
-請依據我提供的起卦結果，為我進行深度、客觀且具備實用指引的解卦。
-進行深度、客觀且有溫度的卦象解讀。
+你是一位精通《易經》象數理、周易卜筮、文王八卦、梅花易數與十翼（彖傳、象傳、繫辭傳）與心理諮商的當代解卦大師。
+請依據用戶起出的【本卦】與【變卦】，先給出客觀的爻辭詮釋，
+再針對用戶詢問的「事業/感情/健康」情境，給出充滿哲理、溫暖且具體實用的行動指引解卦。
+請避免江湖術士的迷信口吻，確保整體回答精煉，適合手機螢幕閱讀。
 
 【來訪者問題】
 ${question}
 
 【卦象資訊】
-- 本卦：第 ${hexagram.num} 卦 - ${hexagram.name}[例如：水雷屯]
+- 本卦：第 ${hexagram.num} 卦 - ${hexagram.name}
 - 上卦：${upper.name}（${upper.element}）${upper.symbol}
 - 下卦：${lower.name}（${lower.element}）${lower.symbol}
 - 卦義：${hexagram.meaning}
 - 運勢：${hexagram.fortune}
 - 變爻：第 ${changing_line} 爻
-- 變卦（之卦）：[例如：水風井，若無變卦請填「無變卦/靜卦」]
 
-【解卦要求與步驟】
-請依序進行以下分析：
-1. 【卦象大意】：簡述本卦與變卦的大自然意象（如：山下有火、水在雷上），並說明這個意象如何對應我目前面臨的現實處境。
-2. 【體用與五行斷吉凶】：（若適用）簡述上下卦或體用卦的五行生剋關係。
-3. 【關鍵爻辭解析】：根據朱熹《易學啟蒙》的斷卦原則，針對「動爻」的爻辭（若為靜卦則看卦辭）進行深度翻譯，並精準指出這個動爻對我問題的「核心啟示」或「轉折點」是什麼。
-4. 【終局走向】：結合變卦，預測這件事情未來的最終發展趨勢與結局。
-5. 【大師建議（趨吉避凶）】：請不要只給吉凶結論。請根據易經「德行」與「時位」的觀念，給我 2-3 條具體的行動建議（此時該進、該退、該守、還是該尋求協助？）。
+【解卦要求】
+1. hexagram_overview：簡述本卦的大自然意象（如：山下有火、水在雷上），並簡述上下卦五行生剋，說明這個意象如何對應來訪者目前的現實處境（約 160-220 字）。
+2. line_analysis：根據朱熹《易學啟蒙》的斷卦原則，針對「動爻」的爻辭進行深度翻譯，並精準指出這個動爻對來訪者問題的「核心啟示」或「轉折點」（約 160-200 字）。
+3. outlook：結合卦象，預測這件事情未來的發展趨勢與終局走向（約 100-150 字）。
+4. advice：根據易經「德行」與「時位」的觀念，給 2-3 條具體的行動建議（此時該進、該退、該守、還是該尋求協助），每條 40-60 字。
+5. judgment：綜合本卦運勢，判斷整體是 "auspicious"（吉）、"neutral"（中平）還是 "inauspicious"（凶）。
 
-【輸出解讀指令】
-1. 請用溫和、專業且具同理心的語氣，讓來訪者感受到被理解。
-2. 輸出格式請使用 Markdown，必須包含以下三個段落：
-   - ### 卦象解析：深入解說本卦的象徵意義、上下卦的互動關係及變爻的影響（約 160-200 字）。
-   - ### 關鍵爻辭解析：根據朱熹《易學啟蒙》的斷卦原則，針對「動爻」的爻辭（若為靜卦則看卦辭）進行深度翻譯，並精準指出這個動爻對我問題的「核心啟示」或「轉折點」是什麼（約 160-200 字）。
-   - ### 建議與方向：以 1. 2. 3. 數字列表，給出 3 點具體、可行的生活建議（每點約 40-60 字）。
-   - ### 【大師建議（趨吉避凶）】：請不要只給吉凶結論。請根據易經「德行」與「時位」的觀念，給我 2-3 條具體的行動建議（此時該進、該退、該守、還是該尋求協助？）。（約 60-80 字）。
-3. 使用 **加粗** 標記重點關鍵字。
-4. 總字數控制在 600-700 字之間，語氣連貫自然，不要流水帳。
+【輸出格式】
+請「只」輸出一個 JSON 物件，不要有任何 JSON 以外的文字、不要用 Markdown code block 包裹。格式範例：
+{
+  "judgment": "auspicious",
+  "hexagram_overview": "……",
+  "line_analysis": "……",
+  "outlook": "……",
+  "advice": ["……", "……", "……"]
+}
 `;
 
   try {
     const client = new OpenAI({ apiKey });
     const response = await client.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: 'gpt-5.6-sol',
+      response_format: { type: 'json_object' },
       messages: [
         {
           role: 'system',
-          content: CHEN_LAOSHI_PERSONA + '\n請務必使用 Markdown 格式化輸出，特別是使用 ### 標題與列表。',
+          content: CHEN_LAOSHI_PERSONA + '\n請務必只以 JSON 物件格式回覆，不要輸出 JSON 以外的任何文字。',
         },
         { role: 'user', content: prompt },
       ],
-      temperature: 0.7,
-      max_tokens: 1200,
+      max_completion_tokens: 1200,
     });
-    return response.choices[0].message.content?.trim() ?? `根據 ${hexagram.name} 的卦象，建議您保持${hexagram.fortune}的心態。`;
+
+    const raw = response.choices[0].message.content;
+    if (!raw) return fallbackInterpretation(result, '解卦暫時無法取得，請稍後再試。');
+
+    const parsed = JSON.parse(raw) as Partial<DivinationInterpretation>;
+    const judgment: DivinationInterpretation['judgment'] =
+      parsed.judgment === 'auspicious' || parsed.judgment === 'inauspicious' ? parsed.judgment : 'neutral';
+
+    return {
+      judgment,
+      hexagram_overview: parsed.hexagram_overview ?? '',
+      line_analysis: parsed.line_analysis ?? '',
+      outlook: parsed.outlook ?? '',
+      advice: Array.isArray(parsed.advice) ? parsed.advice.filter((a) => typeof a === 'string') : [],
+    };
   } catch {
-    return `根據 ${hexagram.name} 的卦象，建議您保持${hexagram.fortune}的心態。`;
+    return fallbackInterpretation(result, `${hexagram.name}：${hexagram.meaning}`);
   }
+}
+
+// ============================================================
+// 梅花易數 - 體用生剋解卦
+// ============================================================
+
+const MEIHUA_PERSONA = `# Role
+你是一位精通《梅花易數》與後世占卜學的國學大師。請依據後端計算好的「體用五行結構」與「時空人倫屬性」，為用戶進行深度斷事。
+
+# Workflow & Execution Logic
+請嚴格依據梅花易數「體用為本，萬物類象為標」的原則進行解卦：
+
+1. 第一步：定性吉凶（體用生剋）
+   - 依據體用生剋結果，客觀告訴用戶此事的成功機率與氣數（如：用克體代表阻礙重重、用生體代表輕而易舉）。
+   - 結合當前季節（五行旺衰），判斷體卦與用卦誰的能量更強。
+
+2. 第二步：描繪細節（時空人倫類象）
+   - 如果是吉兆（用生體、比和、體克用）：請提取「用卦」的方位、時間、人倫，告訴用戶「貴人是誰（人倫）」、「往哪裡去（方位）」、「何時最有利（時間）」。
+   - 如果是凶兆（用克體、體生用）：請提取「用卦」的屬性，告訴用戶「該防範什麼樣的人（人倫）」、「避開哪個方向（方位）」、「哪個季節/月份要特別低調（時間）」。
+
+3. 第三步：動態轉變（互卦與變卦）
+   - 參考互卦與變卦的五行。若變卦「用生體」或「比和」，代表事情雖有波折，但結局圓滿。
+   - 若變卦「用克體」，代表開頭雖好，但後勁不足或最終失敗。
+
+請用結構化、富有哲理且溫暖的語氣輸出，避免江湖術士的迷信口吻。`;
+
+interface MeihuaInterpretation {
+  ti_yong_judgment: string;
+  direction_timing: string;
+  story_arc: string;
+  modern_advice: string[];
+}
+
+function fallbackMeihuaInterpretation(context: MeihuaContext): MeihuaInterpretation {
+  return {
+    ti_yong_judgment: `體卦${context.ti.name}（${context.ti.wuxing}）、用卦${context.yong.name}（${context.yong.wuxing}），兩者關係為「${context.relation}」，此事氣數暫無法詳細展開，建議保持平常心。`,
+    direction_timing: '',
+    story_arc: '',
+    modern_advice: [],
+  };
+}
+
+const MEIHUA_RELATION_LABEL: Record<TiYongRelation, string> = {
+  用生體: '用生體（用卦資源支援體卦，輕而易舉）',
+  比和: '比和（體用同氣，和諧順遂）',
+  體剋用: '體剋用（體卦能壓制用卦，事情可控）',
+  體生用: '體生用（體卦洩氣耗損，較為費力）',
+  用剋體: '用剋體（用卦反過來剋制體卦，阻礙重重）',
+};
+
+type MeihuaTopic = '感情' | '事業' | '健康' | null;
+
+function detectMeihuaTopic(question: string): MeihuaTopic {
+  const loveKeywords = ['感情', '愛情', '戀愛', '復合', '分手', '前女友', '前男友', '曖昧', '喜歡', '告白', '結婚', '婚姻', '對象', '桃花', '交往', '男友', '女友', '老公', '老婆', '配偶'];
+  const careerKeywords = ['工作', '事業', '職', '跳槽', '換工作', '面試', '加薪', '升遷', '創業', '合夥', '生意', '公司', '老闆', '專案', 'offer', 'Offer', '辭職'];
+  const healthKeywords = ['健康', '身體', '生病', '疼痛', '睡眠', '頭痛', '手術', '治療', '康復', '醫生', '症狀', '免疫'];
+
+  const loveScore = loveKeywords.filter((kw) => question.includes(kw)).length;
+  const careerScore = careerKeywords.filter((kw) => question.includes(kw)).length;
+  const healthScore = healthKeywords.filter((kw) => question.includes(kw)).length;
+
+  const max = Math.max(loveScore, careerScore, healthScore);
+  if (max === 0) return null;
+  if (loveScore === max) return '感情';
+  if (careerScore === max) return '事業';
+  return '健康';
+}
+
+const MEIHUA_TOPIC_RULES: Record<'感情' | '事業' | '健康', string> = {
+  感情: `
+【❤️ 感情類占卜專屬解析規則】：
+- 體卦代表「求占者本人」；用卦代表「伴侶、暗戀對象、或感情這件事本身」。
+- 生剋對應：用生體（對方愛你、積極付出）；體生用（你愛對方較多、容易委屈洩氣）；比和（雙方平等和睦、心意相通）；用剋體（感情壓力巨大、對方對你挑剔或容易發生衝突）。
+- 關鍵細節：用卦的「人倫角色」代表對方的性格特徵或潛在情敵；「方位」代表遇見桃花或適合約會的方向；「時間」代表僵局破冰或關係確認的時機。`,
+  事業: `
+【💼 事業類占卜專屬解析規則】：
+- 體卦代表「用戶目前的職位與自身實力」；用卦代表「新工作、Offer、專案項目、或合夥人」。
+- 生剋對應：用生體（新工作很有發揮空間、項目輕鬆拿捏）；比和（求職順利、合夥雙贏）；體剋用（需要排除萬難才能成功、勞心勞力）；用剋體（大環境壓制、主管刁難、跳槽風險高、容易破財）。
+- 關鍵細節：用卦的「人倫角色」代表關鍵貴人或競爭小人的特徵；「方位」代表尋找工作、新辦公室或業務拓展的最佳吉方；「時間」代表簽約或面試開運的黃金期。`,
+  健康: `
+【🩺 健康類占卜專屬解析規則】：
+- 體卦代表「用戶的元氣與身體底子」；用卦代表「病氣、外在感染、或是治療手段」。
+- 生剋對應：用生體、比和（身體自我修復力強，即使生病也能遇到良醫迅速康復）；體剋用（求占者意志力強，能戰勝病魔）；體生用、用剋體（元氣大傷、免疫力低下、病情容易反覆、需要特別注意）。
+- 關鍵細節：體卦對應的身體部位為主要受影響或虛弱區；用卦的「方位」與「時間」代表最適合調養的環境方向與病情好轉的季節。
+- ⚠️ 限制：解讀時請避免下達任何醫療診斷或具體療法建議，僅從哲理角度給心態與生活調養方向的指引。`,
+};
+
+async function getMeihuaInterpretation(
+  question: string,
+  result: DivinationResult,
+  context: MeihuaContext,
+  topic: MeihuaTopic
+): Promise<MeihuaInterpretation> {
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    return fallbackMeihuaInterpretation(context);
+  }
+
+  const topicRules = topic ? MEIHUA_TOPIC_RULES[topic] : '請根據來訪者的問題進行通用的周易哲理分析。';
+
+  const prompt = `
+# Inputs（由系統動態傳入）
+- 【本卦】${result.hexagram.name}
+- 【體卦】${context.ti.name}${context.ti.wuxing}（代表用戶自身，當令狀態：${context.tiWangXiang}，對應人體：${context.ti.bodyPart}）
+- 【用卦】${context.yong.name}${context.yong.wuxing}（代表所問之事，當令狀態：${context.yongWangXiang}，對應人體：${context.yong.bodyPart}）
+- 【互卦】${context.huGua.upperName}${context.huGua.lowerName}（${context.huGua.hexagram.name}）
+- 【變卦】${context.bianGua.upperName}${context.bianGua.lowerName}（${context.bianGua.hexagram.name}）
+- 【體用生剋結果】${MEIHUA_RELATION_LABEL[context.relation]}
+- 【變卦與體卦關係】${MEIHUA_RELATION_LABEL[context.bianRelation]}
+- 【用卦類象】方位：${context.yong.direction}／應驗時間：${context.yong.timing}／人倫：${context.yong.renlun}
+- 【問事主題分類】${topic ?? '一般'}
+- 【問事內容】${question}
+
+${topicRules}
+
+請嚴格依據上述【問事主題分類】對應的專屬解析規則作答，只輸出一個 JSON 物件，不要有任何 JSON 以外的文字、不要用 Markdown code block 包裹。格式範例：
+{
+  "ti_yong_judgment": "……（體用氣數斷吉凶，約120-180字）",
+  "direction_timing": "……（時空方位與貴人鎖定：具體點出方位、應驗時間、關鍵人倫角色，約120-180字）",
+  "story_arc": "……（事件發展連續劇：本卦→互卦→變卦的動態轉折，約150-200字）",
+  "modern_advice": ["……", "……", "……"]
+}
+`;
+
+  try {
+    const client = new OpenAI({ apiKey });
+    const response = await client.chat.completions.create({
+      model: 'gpt-5.6-sol',
+      response_format: { type: 'json_object' },
+      messages: [
+        {
+          role: 'system',
+          content: MEIHUA_PERSONA + '\n請務必只以 JSON 物件格式回覆，不要輸出 JSON 以外的任何文字。',
+        },
+        { role: 'user', content: prompt },
+      ],
+      max_completion_tokens: 1200,
+    });
+
+    const raw = response.choices[0].message.content;
+    if (!raw) return fallbackMeihuaInterpretation(context);
+
+    const parsed = JSON.parse(raw) as Partial<MeihuaInterpretation>;
+    const modernAdvice = Array.isArray(parsed.modern_advice) ? parsed.modern_advice.filter((a) => typeof a === 'string') : [];
+    if (topic === '健康') {
+      modernAdvice.push('溫馨提示：以上占卜僅供哲學參考，若有身體不適，請務必尋求正規現代醫學與專業醫師診斷。');
+    }
+
+    return {
+      ti_yong_judgment: parsed.ti_yong_judgment ?? '',
+      direction_timing: parsed.direction_timing ?? '',
+      story_arc: parsed.story_arc ?? '',
+      modern_advice: modernAdvice,
+    };
+  } catch {
+    return fallbackMeihuaInterpretation(context);
+  }
+}
+
+function meihuaJudgment(relation: TiYongRelation): 'auspicious' | 'neutral' | 'inauspicious' {
+  if (relation === '用生體' || relation === '比和') return 'auspicious';
+  if (relation === '體剋用') return 'neutral';
+  return 'inauspicious'; // 體生用、用剋體
 }
 
 function determineIntent(question: string): 'DIVINATION' | 'PERSONA' {
@@ -1159,34 +1489,40 @@ export async function POST(request: NextRequest) {
     }
 
     const result = calculateHexagram(num1, num2, num3);
-    const interpretation = await getAiInterpretation(message, result);
+    const meihuaContext = buildMeihuaContext(result);
+    const meihuaTopic = detectMeihuaTopic(message);
+
+    const [interpretation, meihuaInterpretation] = await Promise.all([
+      getAiInterpretation(message, result),
+      getMeihuaInterpretation(message, result, meihuaContext, meihuaTopic),
+    ]);
 
     const { hexagram, upper_trigram: upper, lower_trigram: lower } = result;
 
-    const responseText = `## 🔮 易經占卜陳老師為您解卦 🔮
-
-### 【您的問題】
-${message}
-
-### 【卦象資訊】起卦數字：${num1}, ${num2}, ${num3}
-- **本卦**：第 ${hexagram.num} 卦 - ${hexagram.name}
-- **上卦**：${upper.name} ${upper.symbol} （象徵${upper.element}）
-- **下卦**：${lower.name} ${lower.symbol} （象徵${lower.element}）
-- **卦義**：${hexagram.meaning}
-- **運勢**：${hexagram.fortune}
-- **動爻**：第 ${result.changing_line} 爻
-
----
-${interpretation}
-
----
-💡 *提醒：占卜是一種自我認識的工具，最終的決定權在您手中。*
-`;
-
     return NextResponse.json({
-      response: responseText,
       intent: 'DIVINATION',
-      hexagram_data: hexagram,
+      question: message,
+      numbers: [num1, num2, num3],
+      hexagram_data: {
+        num: hexagram.num,
+        name: hexagram.name,
+        meaning: hexagram.meaning,
+        fortune: hexagram.fortune,
+        upper_trigram: upper,
+        lower_trigram: lower,
+        changing_line: result.changing_line,
+      },
+      interpretation,
+      meihua: {
+        judgment: meihuaJudgment(meihuaContext.relation),
+        topic: meihuaTopic,
+        ti: meihuaContext.ti,
+        yong: { name: meihuaContext.yong.name, wuxing: meihuaContext.yong.wuxing, direction: meihuaContext.yong.direction, timing: meihuaContext.yong.timing, renlun: meihuaContext.yong.renlun },
+        hu_gua: { name: meihuaContext.huGua.hexagram.name, upper: meihuaContext.huGua.upperName, lower: meihuaContext.huGua.lowerName },
+        bian_gua: { name: meihuaContext.bianGua.hexagram.name, upper: meihuaContext.bianGua.upperName, lower: meihuaContext.bianGua.lowerName },
+        relation: meihuaContext.relation,
+        interpretation: meihuaInterpretation,
+      },
     });
   } else {
     const responseText = await getAiResponse(message, CHEN_LAOSHI_PERSONA);

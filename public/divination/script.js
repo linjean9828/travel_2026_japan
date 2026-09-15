@@ -195,7 +195,14 @@ document.addEventListener('DOMContentLoaded', function () {
             loadingDiv.remove();
 
             // 顯示 AI 回應（不自動滾動）
-            addMessage(data.response, 'bot', false);
+            if (data.intent === 'DIVINATION' && data.interpretation) {
+                addDivinationCard(data);
+                if (data.meihua) {
+                    addMeihuaCard(data.meihua);
+                }
+            } else {
+                addMessage(data.response, 'bot', false);
+            }
 
             // 延遲後滾動到聊天容器頂部，讓用戶從頭閱讀
             setTimeout(() => {
@@ -237,6 +244,120 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         return messageDiv;
+    }
+
+    // HTML 跳脫，避免 AI 回傳內容中的特殊字元破壞版面
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text ?? '';
+        return div.innerHTML;
+    }
+
+    // 判斷吉凶顯示文字與樣式
+    function judgmentMeta(judgment) {
+        if (judgment === 'auspicious') return { label: '吉', className: 'auspicious' };
+        if (judgment === 'inauspicious') return { label: '凶', className: 'inauspicious' };
+        return { label: '中平', className: 'neutral' };
+    }
+
+    // 顯示結構化占卜結果卡片（依吉凶分色渲染卦象解析、爻辭、走向與建議）
+    function addDivinationCard(data) {
+        const { hexagram_data: hex, interpretation: interp, question, numbers } = data;
+        const { label, className } = judgmentMeta(interp.judgment);
+
+        const adviceHTML = (interp.advice || [])
+            .map((item) => `<li>${escapeHtml(item)}</li>`)
+            .join('');
+
+        const cardDiv = document.createElement('div');
+        cardDiv.className = `message bot divination-card ${className}`;
+        cardDiv.innerHTML = `
+            <div class="divination-card-header">
+                <span class="divination-card-title">🔮 易經占卜陳老師為您解卦</span>
+                <span class="judgment-badge ${className}">${label}</span>
+            </div>
+            <p class="divination-question">【您的問題】${escapeHtml(question)}</p>
+            <div class="hexagram-summary">
+                <div><strong>本卦</strong>第 ${hex.num} 卦・${escapeHtml(hex.name)}</div>
+                <div><strong>上卦</strong>${escapeHtml(hex.upper_trigram.name)} ${hex.upper_trigram.symbol}（${escapeHtml(hex.upper_trigram.element)}）</div>
+                <div><strong>下卦</strong>${escapeHtml(hex.lower_trigram.name)} ${hex.lower_trigram.symbol}（${escapeHtml(hex.lower_trigram.element)}）</div>
+                <div><strong>卦義</strong>${escapeHtml(hex.meaning)}</div>
+                <div><strong>運勢</strong>${escapeHtml(hex.fortune)}</div>
+                <div><strong>動爻</strong>第 ${hex.changing_line} 爻</div>
+                <div class="draw-numbers"><strong>起卦數字</strong>${numbers.join(', ')}</div>
+            </div>
+            <div class="divination-section">
+                <h3>卦象解析</h3>
+                <p>${escapeHtml(interp.hexagram_overview)}</p>
+            </div>
+            <div class="divination-section">
+                <h3>關鍵爻辭解析</h3>
+                <p>${escapeHtml(interp.line_analysis)}</p>
+            </div>
+            <div class="divination-section">
+                <h3>終局走向</h3>
+                <p>${escapeHtml(interp.outlook)}</p>
+            </div>
+            <div class="divination-section">
+                <h3>大師建議</h3>
+                <ul class="advice-list">${adviceHTML}</ul>
+            </div>
+            <p class="divination-footer">💡 提醒：占卜是一種自我認識的工具，最終的決定權在您手中。</p>
+        `;
+
+        chatContainer.appendChild(cardDiv);
+        chatContainer.classList.add('has-messages');
+        updateChatControls();
+
+        return cardDiv;
+    }
+
+    // 顯示梅花易數體用生剋解卦卡片
+    function addMeihuaCard(meihua) {
+        const { label, className } = judgmentMeta(meihua.judgment);
+        const interp = meihua.interpretation;
+
+        const adviceHTML = (interp.modern_advice || [])
+            .map((item) => `<li>${escapeHtml(item)}</li>`)
+            .join('');
+
+        const cardDiv = document.createElement('div');
+        cardDiv.className = `message bot divination-card meihua-card ${className}`;
+        cardDiv.innerHTML = `
+            <div class="divination-card-header">
+                <span class="divination-card-title">☯ 梅花易數・體用生剋斷卦</span>
+                <span class="judgment-badge ${className}">${label}</span>
+            </div>
+            <div class="hexagram-summary">
+                <div><strong>體卦</strong>${escapeHtml(meihua.ti.name)}（${escapeHtml(meihua.ti.wuxing)}）</div>
+                <div><strong>用卦</strong>${escapeHtml(meihua.yong.name)}（${escapeHtml(meihua.yong.wuxing)}）</div>
+                <div><strong>互卦</strong>${escapeHtml(meihua.hu_gua.name)}</div>
+                <div><strong>變卦</strong>${escapeHtml(meihua.bian_gua.name)}</div>
+                <div class="draw-numbers"><strong>體用關係</strong>${escapeHtml(meihua.relation)}</div>
+            </div>
+            <div class="divination-section">
+                <h3>⚖️ 體用氣數斷吉凶</h3>
+                <p>${escapeHtml(interp.ti_yong_judgment)}</p>
+            </div>
+            <div class="divination-section">
+                <h3>🧭 時空方位與貴人鎖定</h3>
+                <p>${escapeHtml(interp.direction_timing)}</p>
+            </div>
+            <div class="divination-section">
+                <h3>🎬 事件發展連續劇</h3>
+                <p>${escapeHtml(interp.story_arc)}</p>
+            </div>
+            <div class="divination-section">
+                <h3>🛠️ 大師破局現代建議</h3>
+                <ul class="advice-list">${adviceHTML}</ul>
+            </div>
+        `;
+
+        chatContainer.appendChild(cardDiv);
+        chatContainer.classList.add('has-messages');
+        updateChatControls();
+
+        return cardDiv;
     }
 
     // 更新對話管理按鈕的顯示狀態

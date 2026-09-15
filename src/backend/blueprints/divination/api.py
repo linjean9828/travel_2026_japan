@@ -5,6 +5,8 @@
 提供占卜、卦象查詢、AI 解讀等功能
 """
 import os
+import json
+from concurrent.futures import ThreadPoolExecutor
 try:
     import truststore
     truststore.inject_into_ssl()
@@ -1021,65 +1023,366 @@ def calculate_hexagram(num1, num2, num3):
         'numbers': (num1, num2, num3)
     }
 
-def get_ai_interpretation(question, result):
-    """獲取 AI 解讀"""
+# ============================================================
+# 梅花易數 - 五行、體用、互卦、變卦、類象
+# ============================================================
+
+# 三爻由下到上的陰陽組成，1=陽 0=陰
+TRIGRAM_LINES = {
+    '乾': (1, 1, 1),
+    '兌': (1, 1, 0),
+    '離': (1, 0, 1),
+    '震': (1, 0, 0),
+    '巽': (0, 1, 1),
+    '坎': (0, 1, 0),
+    '艮': (0, 0, 1),
+    '坤': (0, 0, 0),
+}
+
+LINES_TO_TRIGRAM = {''.join(str(b) for b in lines): name for name, lines in TRIGRAM_LINES.items()}
+
+TRIGRAM_PROFILE = {
+    '乾': {'wuxing': '金', 'direction': '西北', 'timing': '秋冬之交（約國曆9-11月）', 'renlun': '父親、長輩、領導、政府、老人', 'body_part': '頭部'},
+    '兌': {'wuxing': '金', 'direction': '正西', 'timing': '秋季（約國曆8月）', 'renlun': '少女、朋友、口舌是非、飲食娛樂之人', 'body_part': '口、肺'},
+    '離': {'wuxing': '火', 'direction': '正南', 'timing': '夏季（約國曆5月）', 'renlun': '中女、文人、眼目之人', 'body_part': '眼睛、心臟'},
+    '震': {'wuxing': '木', 'direction': '正東', 'timing': '春季（約國曆2-3月）', 'renlun': '長男、決策者、行動積極之人', 'body_part': '足部、肝臟'},
+    '巽': {'wuxing': '木', 'direction': '東南', 'timing': '春夏之交（約國曆4-5月）', 'renlun': '長女、仲介、業務、生意人', 'body_part': '大腿、膽'},
+    '坎': {'wuxing': '水', 'direction': '正北', 'timing': '冬季（約國曆11月）', 'renlun': '中男、智者、亦可能代表危險或盜賊', 'body_part': '耳朵、腎臟、血液'},
+    '艮': {'wuxing': '土', 'direction': '東北', 'timing': '冬春之交（約國曆12-1月）', 'renlun': '少男、阻礙者、僧道、不動產相關人士', 'body_part': '手部、鼻子、脾胃'},
+    '坤': {'wuxing': '土', 'direction': '西南', 'timing': '夏秋之交（約國曆6-7月）', 'renlun': '母親、群眾、農夫、老婦', 'body_part': '腹部、脾胃'},
+}
+
+WUXING_GENERATES = {'木': '火', '火': '土', '土': '金', '金': '水', '水': '木'}
+WUXING_OVERCOMES = {'木': '土', '土': '水', '水': '火', '火': '金', '金': '木'}
+
+
+def get_ti_yong_relation(ti_wuxing, yong_wuxing):
+    if ti_wuxing == yong_wuxing:
+        return '比和'
+    if WUXING_GENERATES[yong_wuxing] == ti_wuxing:
+        return '用生體'
+    if WUXING_GENERATES[ti_wuxing] == yong_wuxing:
+        return '體生用'
+    if WUXING_OVERCOMES[yong_wuxing] == ti_wuxing:
+        return '用剋體'
+    return '體剋用'
+
+
+SEASON_WANGXIANG = {
+    '春': ['木', '火', '水', '金', '土'],  # 依序：旺 相 休 囚 死
+    '夏': ['火', '土', '木', '水', '金'],
+    '秋': ['金', '水', '土', '火', '木'],
+    '冬': ['水', '木', '金', '土', '火'],
+}
+
+
+def get_current_season():
+    month = datetime.now().month
+    if 1 <= month <= 3:
+        return '春'
+    if 4 <= month <= 6:
+        return '夏'
+    if 7 <= month <= 9:
+        return '秋'
+    return '冬'
+
+
+def get_wangxiang_state(wuxing):
+    order = SEASON_WANGXIANG[get_current_season()]
+    labels = ['旺', '相', '休', '囚', '死']
+    return labels[order.index(wuxing)] if wuxing in order else '休'
+
+
+def _lookup_hexagram(upper_name, lower_name):
+    key = f"{upper_name}{lower_name}"
+    return HEXAGRAMS.get(key, {'num': 0, 'name': f"{upper_name}{lower_name}卦", 'meaning': '', 'fortune': '中平'})
+
+
+def get_hu_gua(lower, upper):
+    """互卦：取本卦六爻（由下而上）第2-3-4爻為下互，第3-4-5爻為上互"""
+    all_lines = list(TRIGRAM_LINES[lower['name']]) + list(TRIGRAM_LINES[upper['name']])
+    hu_lower_name = LINES_TO_TRIGRAM[''.join(str(b) for b in all_lines[1:4])]
+    hu_upper_name = LINES_TO_TRIGRAM[''.join(str(b) for b in all_lines[2:5])]
+    return {'lower_name': hu_lower_name, 'upper_name': hu_upper_name, 'hexagram': _lookup_hexagram(hu_upper_name, hu_lower_name)}
+
+
+def get_bian_gua(lower, upper, changing_line):
+    """變卦：本卦動爻陰陽互換後重新組成的新卦"""
+    all_lines = list(TRIGRAM_LINES[lower['name']]) + list(TRIGRAM_LINES[upper['name']])
+    idx = changing_line - 1
+    all_lines[idx] = 0 if all_lines[idx] == 1 else 1
+    bian_lower_name = LINES_TO_TRIGRAM[''.join(str(b) for b in all_lines[0:3])]
+    bian_upper_name = LINES_TO_TRIGRAM[''.join(str(b) for b in all_lines[3:6])]
+    return {'lower_name': bian_lower_name, 'upper_name': bian_upper_name, 'hexagram': _lookup_hexagram(bian_upper_name, bian_lower_name)}
+
+
+def build_meihua_context(result):
+    lower = result['lower_trigram']
+    upper = result['upper_trigram']
+    changing_line = result['changing_line']
+
+    # 動爻在下卦（1-3爻）則下卦為用、上卦為體；動爻在上卦（4-6爻）則上卦為用、下卦為體
+    if changing_line <= 3:
+        ti_trigram, yong_trigram = upper, lower
+    else:
+        ti_trigram, yong_trigram = lower, upper
+
+    ti_profile = TRIGRAM_PROFILE[ti_trigram['name']]
+    yong_profile = TRIGRAM_PROFILE[yong_trigram['name']]
+    ti_wuxing = ti_profile['wuxing']
+    yong_wuxing = yong_profile['wuxing']
+
+    hu_gua = get_hu_gua(lower, upper)
+    bian_gua = get_bian_gua(lower, upper, changing_line)
+    bian_trigram_name = bian_gua['upper_name'] if changing_line <= 3 else bian_gua['lower_name']
+    bian_wuxing = TRIGRAM_PROFILE[bian_trigram_name]['wuxing']
+
+    return {
+        'ti': {'name': ti_trigram['name'], 'wuxing': ti_wuxing, 'body_part': ti_profile['body_part']},
+        'yong': {
+            'name': yong_trigram['name'], 'wuxing': yong_wuxing,
+            'direction': yong_profile['direction'], 'timing': yong_profile['timing'], 'renlun': yong_profile['renlun'],
+            'body_part': yong_profile['body_part'],
+        },
+        'hu_gua': hu_gua,
+        'bian_gua': bian_gua,
+        'relation': get_ti_yong_relation(ti_wuxing, yong_wuxing),
+        'bian_relation': get_ti_yong_relation(ti_wuxing, bian_wuxing),
+        'ti_wangxiang': get_wangxiang_state(ti_wuxing),
+        'yong_wangxiang': get_wangxiang_state(yong_wuxing),
+    }
+
+
+def meihua_judgment(relation):
+    if relation in ('用生體', '比和'):
+        return 'auspicious'
+    if relation == '體剋用':
+        return 'neutral'
+    return 'inauspicious'  # 體生用、用剋體
+
+
+MEIHUA_PERSONA = """# Role
+你是一位精通《梅花易數》與後世占卜學的國學大師。請依據後端計算好的「體用五行結構」與「時空人倫屬性」，為用戶進行深度斷事。
+
+# Workflow & Execution Logic
+請嚴格依據梅花易數「體用為本，萬物類象為標」的原則進行解卦：
+
+1. 第一步：定性吉凶（體用生剋）
+   - 依據體用生剋結果，客觀告訴用戶此事的成功機率與氣數（如：用克體代表阻礙重重、用生體代表輕而易舉）。
+   - 結合當前季節（五行旺衰），判斷體卦與用卦誰的能量更強。
+
+2. 第二步：描繪細節（時空人倫類象）
+   - 如果是吉兆（用生體、比和、體克用）：請提取「用卦」的方位、時間、人倫，告訴用戶「貴人是誰（人倫）」、「往哪裡去（方位）」、「何時最有利（時間）」。
+   - 如果是凶兆（用克體、體生用）：請提取「用卦」的屬性，告訴用戶「該防範什麼樣的人（人倫）」、「避開哪個方向（方位）」、「哪個季節/月份要特別低調（時間）」。
+
+3. 第三步：動態轉變（互卦與變卦）
+   - 參考互卦與變卦的五行。若變卦「用生體」或「比和」，代表事情雖有波折，但結局圓滿。
+   - 若變卦「用克體」，代表開頭雖好，但後勁不足或最終失敗。
+
+請用結構化、富有哲理且溫暖的語氣輸出，避免江湖術士的迷信口吻。"""
+
+MEIHUA_RELATION_LABEL = {
+    '用生體': '用生體（用卦資源支援體卦，輕而易舉）',
+    '比和': '比和（體用同氣，和諧順遂）',
+    '體剋用': '體剋用（體卦能壓制用卦，事情可控）',
+    '體生用': '體生用（體卦洩氣耗損，較為費力）',
+    '用剋體': '用剋體（用卦反過來剋制體卦，阻礙重重）',
+}
+
+
+def _fallback_meihua_interpretation(context):
+    return {
+        'ti_yong_judgment': f"體卦{context['ti']['name']}（{context['ti']['wuxing']}）、用卦{context['yong']['name']}（{context['yong']['wuxing']}），兩者關係為「{context['relation']}」，此事氣數暫無法詳細展開，建議保持平常心。",
+        'direction_timing': '',
+        'story_arc': '',
+        'modern_advice': [],
+    }
+
+
+def detect_meihua_topic(question):
+    """依問題關鍵字判斷主題：感情 / 事業 / 健康 / None"""
+    love_keywords = ['感情', '愛情', '戀愛', '復合', '分手', '前女友', '前男友', '曖昧', '喜歡', '告白', '結婚', '婚姻', '對象', '桃花', '交往', '男友', '女友', '老公', '老婆', '配偶']
+    career_keywords = ['工作', '事業', '職', '跳槽', '換工作', '面試', '加薪', '升遷', '創業', '合夥', '生意', '公司', '老闆', '專案', 'offer', 'Offer', '辭職']
+    health_keywords = ['健康', '身體', '生病', '疼痛', '睡眠', '頭痛', '手術', '治療', '康復', '醫生', '症狀', '免疫']
+
+    love_score = sum(1 for kw in love_keywords if kw in question)
+    career_score = sum(1 for kw in career_keywords if kw in question)
+    health_score = sum(1 for kw in health_keywords if kw in question)
+
+    best = max(love_score, career_score, health_score)
+    if best == 0:
+        return None
+    if love_score == best:
+        return '感情'
+    if career_score == best:
+        return '事業'
+    return '健康'
+
+
+MEIHUA_TOPIC_RULES = {
+    '感情': """
+【❤️ 感情類占卜專屬解析規則】：
+- 體卦代表「求占者本人」；用卦代表「伴侶、暗戀對象、或感情這件事本身」。
+- 生剋對應：用生體（對方愛你、積極付出）；體生用（你愛對方較多、容易委屈洩氣）；比和（雙方平等和睦、心意相通）；用剋體（感情壓力巨大、對方對你挑剔或容易發生衝突）。
+- 關鍵細節：用卦的「人倫角色」代表對方的性格特徵或潛在情敵；「方位」代表遇見桃花或適合約會的方向；「時間」代表僵局破冰或關係確認的時機。""",
+    '事業': """
+【💼 事業類占卜專屬解析規則】：
+- 體卦代表「用戶目前的職位與自身實力」；用卦代表「新工作、Offer、專案項目、或合夥人」。
+- 生剋對應：用生體（新工作很有發揮空間、項目輕鬆拿捏）；比和（求職順利、合夥雙贏）；體剋用（需要排除萬難才能成功、勞心勞力）；用剋體（大環境壓制、主管刁難、跳槽風險高、容易破財）。
+- 關鍵細節：用卦的「人倫角色」代表關鍵貴人或競爭小人的特徵；「方位」代表尋找工作、新辦公室或業務拓展的最佳吉方；「時間」代表簽約或面試開運的黃金期。""",
+    '健康': """
+【🩺 健康類占卜專屬解析規則】：
+- 體卦代表「用戶的元氣與身體底子」；用卦代表「病氣、外在感染、或是治療手段」。
+- 生剋對應：用生體、比和（身體自我修復力強，即使生病也能遇到良醫迅速康復）；體剋用（求占者意志力強，能戰勝病魔）；體生用、用剋體（元氣大傷、免疫力低下、病情容易反覆、需要特別注意）。
+- 關鍵細節：體卦對應的身體部位為主要受影響或虛弱區；用卦的「方位」與「時間」代表最適合調養的環境方向與病情好轉的季節。
+- ⚠️ 限制：解讀時請避免下達任何醫療診斷或具體療法建議，僅從哲理角度給心態與生活調養方向的指引。""",
+}
+
+
+def get_meihua_interpretation(question, result, context, topic):
+    """梅花易數體用生剋解卦（結構化 JSON）"""
     if not client:
-        return "（AI 解讀功能需要 OPENAI_API_KEY）\\n\\n根據卦象，這是一個關於變化與選擇的時刻。建議您保持內心平靜，審慎思考後再做決定。"
-    
+        return _fallback_meihua_interpretation(context)
+
+    topic_rules = MEIHUA_TOPIC_RULES.get(topic, '請根據來訪者的問題進行通用的周易哲理分析。')
+
+    prompt = f"""
+# Inputs（由系統動態傳入）
+- 【本卦】{result['hexagram']['name']}
+- 【體卦】{context['ti']['name']}{context['ti']['wuxing']}（代表用戶自身，當令狀態：{context['ti_wangxiang']}，對應人體：{context['ti']['body_part']}）
+- 【用卦】{context['yong']['name']}{context['yong']['wuxing']}（代表所問之事，當令狀態：{context['yong_wangxiang']}，對應人體：{context['yong']['body_part']}）
+- 【互卦】{context['hu_gua']['upper_name']}{context['hu_gua']['lower_name']}（{context['hu_gua']['hexagram']['name']}）
+- 【變卦】{context['bian_gua']['upper_name']}{context['bian_gua']['lower_name']}（{context['bian_gua']['hexagram']['name']}）
+- 【體用生剋結果】{MEIHUA_RELATION_LABEL[context['relation']]}
+- 【變卦與體卦關係】{MEIHUA_RELATION_LABEL[context['bian_relation']]}
+- 【用卦類象】方位：{context['yong']['direction']}／應驗時間：{context['yong']['timing']}／人倫：{context['yong']['renlun']}
+- 【問事主題分類】{topic or '一般'}
+- 【問事內容】{question}
+
+{topic_rules}
+
+請嚴格依據上述【問事主題分類】對應的專屬解析規則作答，只輸出一個 JSON 物件，不要有任何 JSON 以外的文字、不要用 Markdown code block 包裹。格式範例：
+{{
+  "ti_yong_judgment": "……（體用氣數斷吉凶，約120-180字）",
+  "direction_timing": "……（時空方位與貴人鎖定：具體點出方位、應驗時間、關鍵人倫角色，約120-180字）",
+  "story_arc": "……（事件發展連續劇：本卦→互卦→變卦的動態轉折，約150-200字）",
+  "modern_advice": ["……", "……", "……"]
+}}
+"""
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-5.6-sol",
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": MEIHUA_PERSONA + "\n請務必只以 JSON 物件格式回覆，不要輸出 JSON 以外的任何文字。"},
+                {"role": "user", "content": prompt}
+            ],
+            max_completion_tokens=1200
+        )
+        raw = response.choices[0].message.content
+        if not raw:
+            return _fallback_meihua_interpretation(context)
+
+        parsed = json.loads(raw)
+        modern_advice = [a for a in parsed.get('modern_advice', []) if isinstance(a, str)]
+        if topic == '健康':
+            modern_advice.append('溫馨提示：以上占卜僅供哲學參考，若有身體不適，請務必尋求正規現代醫學與專業醫師診斷。')
+
+        return {
+            'ti_yong_judgment': parsed.get('ti_yong_judgment', ''),
+            'direction_timing': parsed.get('direction_timing', ''),
+            'story_arc': parsed.get('story_arc', ''),
+            'modern_advice': modern_advice,
+        }
+    except Exception:
+        return _fallback_meihua_interpretation(context)
+
+
+def _fallback_interpretation(hexagram, note):
+    return {
+        'judgment': 'neutral',
+        'hexagram_overview': note,
+        'line_analysis': f"根據 {hexagram['name']} 的卦象，建議您保持{hexagram['fortune']}的心態。",
+        'outlook': '',
+        'advice': [],
+    }
+
+def get_ai_interpretation(question, result):
+    """獲取 AI 解讀（結構化 JSON）"""
     hexagram = result['hexagram']
+
+    if not client:
+        return _fallback_interpretation(hexagram, '（AI 解讀功能需要 OPENAI_API_KEY）這是一個關於變化與選擇的時刻，建議您保持內心平靜，審慎思考後再做決定。')
+
     upper = result['upper_trigram']
     lower = result['lower_trigram']
     changing_line = result['changing_line']
-    
+
     prompt = f"""
-你是一位精通《易經》象數理、周易卜筮與哲理的當代解卦大師。
-請依據我提供的起卦結果，為我進行深度、客觀且具備實用指引的解卦。
-進行深度、客觀且有溫度的卦象解讀。
+你是一位精通《易經》象數理、周易卜筮、文王八卦、梅花易數與十翼（彖傳、象傳、繫辭傳）與心理諮商的當代解卦大師。
+請依據用戶起出的【本卦】與【變卦】，先給出客觀的爻辭詮釋，
+再針對用戶詢問的「事業/感情/健康」情境，給出充滿哲理、溫暖且具體實用的行動指引解卦。
+請避免江湖術士的迷信口吻，確保整體回答精煉，適合手機螢幕閱讀。
 
 【來訪者問題】
 {question}
 
 【卦象資訊】
-- 本卦：第 {hexagram['num']} 卦 - {hexagram['name']}[例如：水雷屯]
+- 本卦：第 {hexagram['num']} 卦 - {hexagram['name']}
 - 上卦：{upper['name']}（{upper['element']}）{upper['symbol']}
 - 下卦：{lower['name']}（{lower['element']}）{lower['symbol']}
 - 卦義：{hexagram['meaning']}
 - 運勢：{hexagram['fortune']}
 - 變爻：第 {changing_line} 爻
-- 變卦（之卦）：[例如：水風井，若無變卦請填「無變卦/靜卦」]
 
-【解卦要求與步驟】
-請依序進行以下分析：
-1. 【卦象大意】：簡述本卦與變卦的大自然意象（如：山下有火、水在雷上），並說明這個意象如何對應我目前面臨的現實處境。
-2. 【體用與五行斷吉凶】：（若適用）簡述上下卦或體用卦的五行生剋關係。
-3. 【關鍵爻辭解析】：根據朱熹《易學啟蒙》的斷卦原則，針對「動爻」的爻辭（若為靜卦則看卦辭）進行深度翻譯，並精準指出這個動爻對我問題的「核心啟示」或「轉折點」是什麼。
-4. 【終局走向】：結合變卦，預測這件事情未來的最終發展趨勢與結局。
-5. 【大師建議（趨吉避凶）】：請不要只給吉凶結論。請根據易經「德行」與「時位」的觀念，給我 2-3 條具體的行動建議（此時該進、該退、該守、還是該尋求協助？）。
+【解卦要求】
+1. hexagram_overview：簡述本卦的大自然意象（如：山下有火、水在雷上），並簡述上下卦五行生剋，說明這個意象如何對應來訪者目前的現實處境（約 160-220 字）。
+2. line_analysis：根據朱熹《易學啟蒙》的斷卦原則，針對「動爻」的爻辭進行深度翻譯，並精準指出這個動爻對來訪者問題的「核心啟示」或「轉折點」（約 160-200 字）。
+3. outlook：結合卦象，預測這件事情未來的發展趨勢與終局走向（約 100-150 字）。
+4. advice：根據易經「德行」與「時位」的觀念，給 2-3 條具體的行動建議（此時該進、該退、該守、還是該尋求協助），每條 40-60 字。
+5. judgment：綜合本卦運勢，判斷整體是 "auspicious"（吉）、"neutral"（中平）還是 "inauspicious"（凶）。
 
-【輸出解讀指令】
-1. 請用溫和、專業且具同理心的語氣，讓來訪者感受到被理解。
-2. 輸出格式請使用 Markdown，必須包含以下三個段落：
-   - ### 卦象解析：深入解說本卦的象徵意義、上下卦的互動關係及變爻的影響（約 160-200 字）。
-   - ### 關鍵爻辭解析：根據朱熹《易學啟蒙》的斷卦原則，針對「動爻」的爻辭（若為靜卦則看卦辭）進行深度翻譯，並精準指出這個動爻對我問題的「核心啟示」或「轉折點」是什麼（約 160-200 字）。
-   - ### 建議與方向：以 1. 2. 3. 數字列表，給出 3 點具體、可行的生活建議（每點約 40-60 字）。
-   - ### 【大師建議（趨吉避凶）】：請不要只給吉凶結論。請根據易經「德行」與「時位」的觀念，給我 2-3 條具體的行動建議（此時該進、該退、該守、還是該尋求協助？）。（約 60-80 字）。
-3. 使用 **加粗** 標記重點關鍵字。
-4. 總字數控制在 600-700 字之間，語氣連貫自然，不要流水帳。
+【輸出格式】
+請「只」輸出一個 JSON 物件，不要有任何 JSON 以外的文字、不要用 Markdown code block 包裹。格式範例：
+{{
+  "judgment": "auspicious",
+  "hexagram_overview": "……",
+  "line_analysis": "……",
+  "outlook": "……",
+  "advice": ["……", "……", "……"]
+}}
 """
-    
+
     try:
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-5.6-sol",
+            response_format={"type": "json_object"},
             messages=[
-                {"role": "system", "content": CHEN_LAOSHI_PERSONA + "\n請務必使用 Markdown 格式化輸出，特別是使用 ### 標題與列表。"},
+                {"role": "system", "content": CHEN_LAOSHI_PERSONA + "\n請務必只以 JSON 物件格式回覆，不要輸出 JSON 以外的任何文字。"},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.7,
-            max_tokens=1200
+            max_completion_tokens=1200
         )
-        return response.choices[0].message.content.strip()
+        raw = response.choices[0].message.content
+        if not raw:
+            return _fallback_interpretation(hexagram, '解卦暫時無法取得，請稍後再試。')
+
+        parsed = json.loads(raw)
+        judgment = parsed.get('judgment')
+        if judgment not in ('auspicious', 'inauspicious'):
+            judgment = 'neutral'
+
+        return {
+            'judgment': judgment,
+            'hexagram_overview': parsed.get('hexagram_overview', ''),
+            'line_analysis': parsed.get('line_analysis', ''),
+            'outlook': parsed.get('outlook', ''),
+            'advice': [a for a in parsed.get('advice', []) if isinstance(a, str)],
+        }
     except Exception:
-        return f"根據 {hexagram['name']} 的卦象，建議您保持{hexagram['fortune']}的心態。"
+        return _fallback_interpretation(hexagram, f"{hexagram['name']}：{hexagram['meaning']}")
+
 
 def determine_intent(question):
     """判斷用戶意圖"""
@@ -1139,36 +1442,57 @@ def chat():
             num1, num2, num3 = get_divination_numbers()
         
         result = calculate_hexagram(num1, num2, num3)
-        interpretation = get_ai_interpretation(message, result)
-        
+        meihua_context = build_meihua_context(result)
+        meihua_topic = detect_meihua_topic(message)
+
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            interpretation_future = executor.submit(get_ai_interpretation, message, result)
+            meihua_interpretation_future = executor.submit(get_meihua_interpretation, message, result, meihua_context, meihua_topic)
+            interpretation = interpretation_future.result()
+            meihua_interpretation = meihua_interpretation_future.result()
+
         hexagram = result['hexagram']
         upper = result['upper_trigram']
         lower = result['lower_trigram']
-        
-        response_text = f"""## 🔮 易經占卜陳老師為您解卦 🔮
 
-### 【您的問題】
-{message}
-
-### 【卦象資訊】起卦數字：{num1}, {num2}, {num3}
-- **本卦**：第 {hexagram['num']} 卦 - {hexagram['name']}
-- **上卦**：{upper['name']} {upper['symbol']} （象徵{upper['element']}）
-- **下卦**：{lower['name']} {lower['symbol']} （象徵{lower['element']}）
-- **卦義**：{hexagram['meaning']}
-- **運勢**：{hexagram['fortune']}
-- **動爻**：第 {result['changing_line']} 爻
-
----
-{interpretation}
-
----
-💡 *提醒：占卜是一種自我認識的工具，最終的決定權在您手中。*
-"""
-        
         return jsonify({
-            'response': response_text,
             'intent': 'DIVINATION',
-            'hexagram_data': hexagram
+            'question': message,
+            'numbers': [num1, num2, num3],
+            'hexagram_data': {
+                'num': hexagram['num'],
+                'name': hexagram['name'],
+                'meaning': hexagram['meaning'],
+                'fortune': hexagram['fortune'],
+                'upper_trigram': upper,
+                'lower_trigram': lower,
+                'changing_line': result['changing_line'],
+            },
+            'interpretation': interpretation,
+            'meihua': {
+                'judgment': meihua_judgment(meihua_context['relation']),
+                'topic': meihua_topic,
+                'ti': meihua_context['ti'],
+                'yong': {
+                    'name': meihua_context['yong']['name'],
+                    'wuxing': meihua_context['yong']['wuxing'],
+                    'direction': meihua_context['yong']['direction'],
+                    'timing': meihua_context['yong']['timing'],
+                    'renlun': meihua_context['yong']['renlun'],
+                },
+                'hu_gua': {
+                    'name': meihua_context['hu_gua']['hexagram']['name'],
+                    'upper': meihua_context['hu_gua']['upper_name'],
+                    'lower': meihua_context['hu_gua']['lower_name'],
+                },
+                'bian_gua': {
+                    'name': meihua_context['bian_gua']['hexagram']['name'],
+                    'upper': meihua_context['bian_gua']['upper_name'],
+                    'lower': meihua_context['bian_gua']['lower_name'],
+                },
+                'relation': meihua_context['relation'],
+                'interpretation': meihua_interpretation,
+            },
         })
     
     else:

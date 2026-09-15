@@ -269,3 +269,136 @@
         transform: scale(0.95);
     }
 }
+
+/* ==================== 結構化占卜結果卡片 ==================== */
+
+.divination-card {
+    position: relative;
+    border-left-width: 6px;
+    border-left-style: solid;
+}
+
+.divination-card.auspicious {
+    border-left-color: #4caf50;
+}
+
+.divination-card.neutral {
+    border-left-color: #d4af37;
+}
+
+.divination-card.inauspicious {
+    border-left-color: #c8102e;
+}
+
+.divination-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.divination-card-title {
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.judgment-badge {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    border: 2px solid transparent;
+}
+
+.judgment-badge.auspicious {
+    color: #4caf50;
+    border-color: #4caf50;
+    background: rgba(76, 175, 80, 0.12);
+}
+
+.judgment-badge.neutral {
+    color: #d4af37;
+    border-color: #d4af37;
+    background: rgba(212, 175, 55, 0.12);
+}
+
+.judgment-badge.inauspicious {
+    color: #ff6b6b;
+    border-color: #c8102e;
+    background: rgba(200, 16, 46, 0.15);
+}
+
+.divination-question {
+    color: #f5f5dc;
+    opacity: 0.85;
+    margin-bottom: 1rem;
+}
+
+.hexagram-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.5rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #f5f5dc;
+}
+
+.hexagram-summary .draw-numbers {
+    grid-column: 1 / -1;
+}
+
+.hexagram-summary strong {
+    color: #d4af37;
+    margin-right: 0.4rem;
+}
+
+.divination-section {
+    margin-bottom: 1.2rem;
+}
+
+.divination-section h3 {
+    color: #d4af37;
+    border-left: 4px solid #c8102e;
+    padding-left: 1rem;
+    font-size: 1.05rem;
+    margin: 0 0 0.6rem 0;
+}
+
+.divination-section p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.advice-list {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.advice-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.divination-footer {
+    margin: 1rem 0 0 0;
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.75;
+}
+
+/* 梅花易數卡片：與卦爻辭卡片共用結構，標題色改為紫色以利區別 */
+.meihua-card .divination-card-title {
+    color: #b48ce0;
+}
+
+.meihua-card .divination-section h3 {
+    border-left-color: #7c4dbf;
+}
