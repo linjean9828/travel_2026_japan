@@ -3,13 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #0284c7;
-  --primary-foreground: #ffffff;
+  --background: #eef8ff;
+  --foreground: #10213a;
+  --primary: #1d74c6;
+  --primary-foreground: #f4fbff;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: var(--background);
+  background: linear-gradient(180deg, #eef8ff 0%, #f6fbff 42%, #edf3ff 100%);
   color: var(--foreground);
+  font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(29, 116, 198, 0.18);
 }

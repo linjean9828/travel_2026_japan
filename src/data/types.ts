@@ -29,6 +29,7 @@ export interface Attraction {
   keyPersonDeeds?: string;
   souvenir?: string;
   mustEat?: string;
+  dessert?: string;
   mustEatLink?: string;
   image?: string;
   phone?: string;

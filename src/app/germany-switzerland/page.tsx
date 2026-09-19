@@ -76,8 +76,8 @@ export default function GermanySwitzerland() {
             <p className="text-slate-400 text-lg mb-10">
                我們細心編排 2026 年德瑞行的每一個細節，包含自駕路線、阿爾卑斯景觀下午茶與世界遺產地標探訪。
             </p>
-            <Link 
-               href="/" 
+            <Link
+               href="/japan"
                className="inline-flex items-center gap-2 text-sky-400 hover:text-sky-300 font-bold transition-all border-b border-sky-400 pb-1"
             >
                先看看 2026 日本行 <ChevronRight className="w-5 h-5" />

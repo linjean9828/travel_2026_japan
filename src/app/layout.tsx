@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "2026年夏季旅遊 | WangFamilyTravel",
-  description: "2026年8月22日(六) - 8月30日(日) 9天8夜 日本深度旅遊",
+  title: "2027泰國曼谷家庭輕旅行 | WangFamilyTravel",
+  description: "2027年2月5日(五) - 2月10日(三) 6天5夜 泰國曼谷家庭輕旅行",
 };
 
 export default function RootLayout({

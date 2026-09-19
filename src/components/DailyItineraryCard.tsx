@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { DayItinerary, Attraction } from "@/data";
-import { BedDouble, CheckCircle2, Clock, MapPin, Phone, Map, UtensilsCrossed, Star, PlusCircle, MinusCircle, BookOpen, User, Film, ScrollText } from "lucide-react";
+import { BedDouble, CakeSlice, CheckCircle2, Clock, MapPin, Phone, Map, UtensilsCrossed, Star, PlusCircle, MinusCircle, BookOpen, User, Film, ScrollText } from "lucide-react";
 
 function ImageCarousel({ images, alt }: { images: string[]; alt: string }) {
   const [current, setCurrent] = useState(0);
@@ -175,6 +175,12 @@ function AttractionItem({ attr }: { attr: Attraction }) {
                     必吃美食: {attr.mustEat}
                   </div>
                 )
+              )}
+              {attr.dessert && (
+                <div className="flex items-center gap-1 bg-amber-50/70 border border-amber-100/60 px-2 py-1 rounded shadow-sm text-amber-700 font-bold tracking-tight">
+                  <CakeSlice className="w-3 h-3 text-amber-500" />
+                  特色甜點: {attr.dessert}
+                </div>
               )}
               {attr.souvenir && (
                 <div className="flex items-center gap-1 bg-emerald-50/50 border border-emerald-100/50 px-2 py-1 rounded shadow-sm text-emerald-600 font-bold tracking-tight">

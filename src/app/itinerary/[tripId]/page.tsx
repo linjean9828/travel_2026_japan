@@ -62,7 +62,7 @@ export default function ItineraryPage({ params }: { params: { tripId: string } }
           </div>
         </div>
 
-        {/* 路線地圖 (僅日本行程有展示地圖) */}
+        {/* 路線地圖 */}
         {params.tripId === 'japan' && (
           <div id="route-map" className="mb-12 bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
             <div className="px-8 py-6 border-b border-slate-100">
@@ -92,6 +92,52 @@ export default function ItineraryPage({ params }: { params: { tripId: string } }
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="日本東北自駕路線地圖"
+                className="absolute inset-0"
+              />
+            </div>
+          </div>
+        )}
+
+        {params.tripId === 'thailand' && (
+          <div id="route-map" className="mb-12 bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
+            <div className="px-8 py-6 border-b border-slate-100">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-primary" />
+                2/8 中國城・Talad Noi 散步地圖
+              </h2>
+              <div className="flex flex-wrap gap-2 mt-4 text-sm font-medium text-gray-600">
+                {[
+                  { place: "Wat Mangkon 龍蓮寺", detail: "09:45", color: "bg-rose-100 text-rose-700" },
+                  { place: "耀華力路午餐", detail: "11:00", color: "bg-orange-100 text-orange-700" },
+                  { place: "Wat Traimit 金佛寺", detail: "12:30", color: "bg-amber-100 text-amber-700" },
+                  { place: "Talad Noi 巷弄", detail: "13:30", color: "bg-sky-100 text-sky-700" },
+                  { place: "965bkk 下午茶", detail: "14:50", color: "bg-emerald-100 text-emerald-700" },
+                  { place: "Phitthaya Sathian Bridge", detail: "15:45", color: "bg-violet-100 text-violet-700" },
+                ].map((stop) => (
+                  <span key={stop.place} className={`px-3 py-1.5 rounded-full font-semibold ${stop.color}`}>
+                    {stop.place} <span className="opacity-70 font-normal ml-1">{stop.detail}</span>
+                  </span>
+                ))}
+              </div>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&origin=Wat+Mangkon+Kamalawat+Bangkok&destination=Phitthaya+Sathian+Bridge+Bangkok&waypoints=Wat+Traimit+Bangkok%7CSan+Chao+Rong+Kueak+Bangkok%7CSo+Heng+Tai+Bangkok%7C965bkk+Talad+Noi+Bangkok"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex mt-5 px-4 py-2 rounded-xl bg-sky-50 text-sky-700 font-bold text-sm hover:bg-sky-100 transition-colors"
+              >
+                在 Google Maps 開啟散步路線
+              </a>
+            </div>
+            <div className="relative w-full h-80">
+              <iframe
+                src="https://www.google.com/maps?q=Talad+Noi+Bangkok&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="2/8 曼谷中國城與 Talad Noi 散步地圖"
                 className="absolute inset-0"
               />
             </div>

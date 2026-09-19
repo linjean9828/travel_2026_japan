@@ -4,7 +4,17 @@
       "WebSearch",
       "WebFetch(domain:tabelog.com)",
       "WebFetch(domain:hiraizu-meets.com)",
-      "WebFetch(domain:www.shinshuya.jp)"
+      "WebFetch(domain:www.shinshuya.jp)",
+      "Bash(pip install *)",
+      "Bash(dir \"c:\\\\Project\\\\travel-site\\\\src\\\\backend\\\\blueprints\\\\astro\")",
+      "Bash(curl -s http://localhost:5000/api/divination/health)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :5000)",
+      "Bash(taskkill /F /PID 19576 /PID 23696 /PID 3496)",
+      "PowerShell(Stop-Process -Id 19576, 23696, 3496 -Force -ErrorAction SilentlyContinue)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
