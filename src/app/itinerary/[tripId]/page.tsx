@@ -103,7 +103,7 @@ export default function ItineraryPage({ params }: { params: { tripId: string } }
             <div className="px-8 py-6 border-b border-slate-100">
               <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-primary" />
-                2/8 中國城・Talad Noi 散步地圖
+                2/6 中國城・Talad Noi 散步地圖
               </h2>
               <div className="flex flex-wrap gap-2 mt-4 text-sm font-medium text-gray-600">
                 {[
@@ -137,7 +137,7 @@ export default function ItineraryPage({ params }: { params: { tripId: string } }
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="2/8 曼谷中國城與 Talad Noi 散步地圖"
+                title="2/6 曼谷中國城與 Talad Noi 散步地圖"
                 className="absolute inset-0"
               />
             </div>

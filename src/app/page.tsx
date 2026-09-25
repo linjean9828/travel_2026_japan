@@ -78,7 +78,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-8">深度探索每一刻</h2>
           <p className="text-slate-300 text-lg mb-10">
-            我們細心編排 2027 年曼谷行的每一個細節，包含洽圖洽假日市集、班塔通路朱拉隆功夜市必吃美食、臥佛寺與鄭王廟古都巡禮、Talad Noi街藝巷弄與Lhong 1919河岸老屋、Jodd Fairs火山排骨與Mahanakhon SkyWalk高空夕陽。
+            我們細心編排 2027 年曼谷行的每一個細節，包含洽圖洽假日市集、班塔通路朱拉隆功夜市必吃美食、王朗市場在地小吃與鄭王廟泰服體驗、昭披耶河遊船晚餐、Talad Noi街藝巷弄、Jodd Fairs火山排骨與Mahanakhon SkyWalk高空夕陽。
           </p>
           <Link
             href="/japan"
