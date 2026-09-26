@@ -11,8 +11,8 @@ export const thailandItinerary: DayItinerary[] = [
     day: 1,
     date: "2/5",
     dayOfWeek: "五",
-    title: "抵達曼谷・自由活動・The Local Bangkok米其林晚餐",
-    highlight: "桃園機場出發→抵達素萬那普機場→Jasmine City Hotel入住→Baan Khanitha午餐→自由活動→The Local Bangkok晚餐",
+    title: "抵達曼谷・按摩放鬆・自由活動",
+    highlight: "桃園機場出發→抵達素萬那普機場→Jasmine City Hotel入住→按摩放鬆→自由活動（午、晚餐已於機上用餐）",
     accommodation: "Jasmine City Hotel Bangkok（連住5晚）",
     accommodationDetails: JASMINE_CITY_HOTEL,
     image: "https://images.pexels.com/photos/16167720/pexels-photo-16167720.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -21,9 +21,8 @@ export const thailandItinerary: DayItinerary[] = [
       { time: "09:00", title: "桃園機場出發", description: "【出發】搭機飛往曼谷素萬那普機場，飛行時間約3.5小時" },
       { time: "12:30", title: "抵達素萬那普機場", description: "【入境】辦理入境手續、提領行李，可選擇機場快線（Airport Rail Link）或計程車前往市區", address: "999 Moo 1, Nong Prue, Bang Phli District, Samut Prakan 10540" },
       { time: "14:00", title: "Jasmine City Hotel Check-in", description: "【飯店入住】辦理入住、放行李休息，步行2-3分鐘即達BTS Asok站", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" },
-      { time: "14:45", title: "Baan Khanitha 午餐", purpose: "道地泰式料理初體驗", activities: ["泰式綠咖哩、大頭蝦料理", "涼拌柚子沙拉、椰奶加良薑雞湯", "芒果糯米飯"], description: "【飯店旁老字號】1993年開業的曼谷第一間泰式精緻料理餐廳、同樣位於Sukhumvit 23巷內，步行3-5分鐘可達", story: "Baan Khanitha是1993年開業的曼谷泰式料理老字號，被視為曼谷第一間精緻泰式餐廳。就在飯店所在的Sukhumvit 23巷內，剛下飛機放完行李、還沒完全清醒時，不用跑遠就能吃到道地水準的泰式料理，是抵達第一天最省力的午餐選擇。", mustEat: "泰式綠咖哩、大頭蝦料理、芒果糯米飯", dessert: "芒果糯米飯", phone: "+66 2 128 0906", address: "14 Soi Sukhumvit 23, Khlong Toei Nuea, Wattana, Bangkok 10110" },
-      { time: "16:00", title: "自由活動・按摩放鬆", description: "【輕鬆首日】無安排行程，可在飯店泳池放鬆、於Sukhumvit巷弄間隨興散步，或就近體驗一場泰式按摩", purpose: "飯店周邊按摩推薦", activities: ["May Massage：Sukhumvit 23巷內、與飯店同一條巷子，步行1-2分鐘即達", "Health Land Asok：連鎖老字號、品質穩定、環境乾淨，步行約10分鐘"] },
-      { time: "18:30", title: "【米其林推薦】The Local Bangkok 晚餐", purpose: "米其林推薦・曼谷家常菜初體驗", activities: ["品嚐米其林指南推薦的傳統泰式家常料理", "老宅改建的用餐空間、感受曼谷道地生活感"], description: "【米其林推薦】獲米其林指南推薦，就在飯店所在的Sukhumvit 23巷內、步行10分鐘可達", story: "The Local Bangkok位於一棟老宅改建的空間裡，主打逐漸消失的傳統泰式家常菜，獲米其林指南推薦。最大的優點是離Jasmine City Hotel非常近，第一晚不用長途奔波，就能吃到道地水準的泰式料理，是抵達當天最順路的晚餐選擇。", mustEat: "傳統泰式家常菜、泰式咖哩、酸辣湯", address: "32/1 Soi Sukhumvit 23, Khlong Toei Nuea, Wattana, Bangkok 10110" }
+      { time: "14:30", title: "按摩放鬆", purpose: "飯店周邊按摩推薦", activities: ["May Massage：Sukhumvit 23巷內、與飯店同一條巷子，步行1-2分鐘即達", "Health Land Asoke：連鎖老字號、品質穩定、環境乾淨，步行約10分鐘", "Ayothaya Massage、Ayothaya@18、Dao Massage：都在飯店周邊步行可達範圍，可依當下有位子的店家彈性選擇"], description: "【放鬆首站】午餐、晚餐都已於機上用餐，放完行李後直接安排一場泰式按摩，舒緩長途飛行的疲勞" },
+      { time: "16:30", title: "自由活動", description: "【輕鬆首日】按摩結束後無其他安排，可在飯店泳池放鬆、或於Sukhumvit巷弄間隨興散步，早點休息調整時差" }
     ]
   },
   {
@@ -107,20 +106,19 @@ export const thailandItinerary: DayItinerary[] = [
     day: 5,
     date: "2/9",
     dayOfWeek: "二",
-    title: "輕鬆購物日・Mahanakhon SkyWalk夕陽",
-    highlight: "主線：Chuan Kitchen海南雞飯午餐→CentralWorld／Siam商圈輕鬆購物→King Power Mahanakhon SkyWalk高空玻璃夕陽；晚餐先不預排，依當下狀況自由安排",
+    title: "輕鬆購物日・Terminal 21晚餐",
+    highlight: "主線：Chuan Kitchen海南雞飯午餐→CentralWorld／Siam商圈輕鬆購物一整天→Terminal 21 Pier 21美食街晚餐",
     accommodation: "Jasmine City Hotel Bangkok",
     accommodationDetails: JASMINE_CITY_HOTEL,
     image: "https://images.pexels.com/photos/31026303/pexels-photo-31026303.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    tips: ["今天不趕早，上午先在飯店悠閒吃完早餐再出發即可", "大型購物中心：CentralWorld、Siam Paragon、Siam Center、MBK、Gaysorn 全都集中在Siam與Chit Lom一帶，這天就是正式購物日", "今天BTS動線：Asok（出發）→Chit Lom（午餐・購物）→Chong Nonsi（SkyWalk）→Asok（返回飯店，同線直達不用轉乘）", "晚餐先不預排，看完夕陽後可依當下體力與胃口，在Chong Nonsi／Silom周邊自由選擇，避免硬排一家順不順路", "Mahanakhon SkyWalk建議提前上網訂票，14:30就先進場慢慢逛，才能抓準18:15左右的日落時刻到戶外平台", "日落場人潮多、常常會客滿，建議出發前1-2週就先在官網或Klook/KKday訂好日落場門票，避免現場排隊或買不到", "玻璃透明地板體驗需換穿專用鞋套，且不能攜帶手機/相機上去（工作人員會協助拍照）"],
+    tips: ["今天不趕早，上午先在飯店悠閒吃完早餐再出發即可", "大型購物中心：CentralWorld、Siam Paragon、Siam Center、MBK、Gaysorn 全都集中在Siam與Chit Lom一帶，這天就是正式購物日", "今天BTS動線：Asok（出發）→Chit Lom（午餐・購物）→Asok（Terminal 21晚餐），同一條線不用轉乘", "沒有安排景點，全天彈性購物，晚餐安排在飯店旁的Terminal 21，逛完直接走回飯店最省力"],
     attractions: [
       { time: "10:30", title: "從飯店出發", description: "【出發點】搭BTS Sukhumvit線直達Chit Lom站（無需轉乘，約15-20分鐘）", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" },
       { time: "11:00", title: "【米其林推薦】Chuan Kitchen 海南雞飯午餐", purpose: "米其林推薦・新加坡風味午餐", activities: ["招牌新加坡式海南雞飯，雞肉軟嫩多汁", "三種特調沾醬自由搭配", "CentralWorld 6樓Atrium Zone，用餐環境舒適"], description: "【米其林推薦】連續入選米其林指南推薦餐廳的新加坡風味海南雞飯、CentralWorld 6樓，每日10:00-21:00營業", story: "Chuan Kitchen主打新加坡街頭美食風味的海南雞飯，雞肉滑嫩、米飯吸飽雞油香氣，連續多年入選米其林指南推薦名單，就在CentralWorld商場內用餐環境舒適，很適合作為今天悠閒的第一餐，吃飽直接開始逛街。", mustEat: "新加坡式海南雞飯、三種特調沾醬", address: "4/1-4/2 Thanon Phra Ram 1, CentralWorld 6F Atrium Zone, Pathum Wan, Bangkok 10330" },
-      { time: "12:15", title: "CentralWorld／Siam商圈自由購物", purpose: "輕鬆購物", activities: ["CentralWorld逛街、伴手禮採購", "經BTS空中步道步行至Siam Paragon／Siam Center", "咖啡廳小憩、按摩放鬆"], description: "【輕鬆步調】CentralWorld與Siam商圈由BTS空中步道相連、不趕行程慢慢逛", story: "今天特別放慢腳步，不安排緊湊景點，CentralWorld與Siam商圈之間有空中步道相連，全家人可以依自己的步調隨興閒逛，累了就找間咖啡廳坐坐。" },
-      { time: "14:00", title: "前往Mahanakhon SkyWalk", description: "【路上轉移】搭BTS經Siam站轉乘Silom線至Chong Nonsi站，出站即達King Power Mahanakhon大樓（約20-25分鐘）" },
-      { time: "14:30", title: "King Power Mahanakhon SkyWalk", purpose: "高空玻璃夕陽體驗", activities: ["74樓室內觀景台360度俯瞰曼谷市區", "78樓「Glass Tray」離地310公尺玻璃透明地板體驗", "戶外Skywalk露天平台欣賞日落與夜景交替（2月曼谷日落約18:15）"], description: "【曼谷最高地標】314公尺泰國第二高樓、78樓玻璃透明地板、每日10:00-19:00開放（末班入場18:30），停留時間拉長才能等到18:15左右的日落", story: "King Power Mahanakhon是曼谷天際線最醒目的地標之一，以「像素化」的階梯狀外觀聞名。78樓的玻璃透明地板懸空310公尺，直接踩在腳下的曼谷市景相當震撼。停留時間拉長，先逛74樓室內觀景台、體驗玻璃地板，再抓準18:15左右的日落時刻到戶外Skywalk平台，同時欣賞日落金光與華燈初上的雙重景色，是全家人拍照留念的絕佳制高點。", address: "114 Narathiwas Road, Silom, Bang Rak, Bangkok 10500" },
-      { time: "18:45", title: "晚餐自由安排", description: "【自由用餐】看完夕陽後晚餐先不預排，可在Chong Nonsi／Silom周邊依當下狀況與胃口自由選擇" },
-      { time: "20:30", title: "返回飯店", description: "【返程休息】搭BTS經Siam站轉乘Sukhumvit線直達Asok站（約20-25分鐘），步行回飯店", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" }
+      { time: "12:15", title: "CentralWorld／Siam商圈自由購物", purpose: "輕鬆購物", activities: ["CentralWorld逛街、伴手禮採購", "經BTS空中步道步行至Siam Paragon／Siam Center", "咖啡廳小憩、按摩放鬆"], description: "【輕鬆步調】CentralWorld與Siam商圈由BTS空中步道相連、不趕行程慢慢逛，全天彈性安排", story: "今天特別放慢腳步，不安排緊湊景點，CentralWorld與Siam商圈之間有空中步道相連，全家人可以依自己的步調隨興閒逛一整天，累了就找間咖啡廳坐坐，晚餐也不特別預排。" },
+      { time: "19:00", title: "前往Terminal 21", description: "【路上轉移】搭BTS Sukhumvit線直達Asok站（無需轉乘，約15-20分鐘），出站即達Terminal 21" },
+      { time: "19:30", title: "Terminal 21 晚餐", purpose: "平價美食街晚餐", activities: ["5樓Pier 21美食街，各國小吃選擇多、價格親民", "各樓層以世界城市為主題拍照打卡", "飯後可直接步行回飯店，不用再移動"], description: "【飯店旁商場】鄰近BTS Asok與MRT Sukhumvit站，步行即達飯店，逛累了最省力的晚餐選擇", story: "Terminal 21就在飯店旁邊，5樓Pier 21美食街以平價聞名，各國小吃、泰式料理選擇豐富，全家人可以各自選喜歡的餐點，價格也比一般餐廳親民。逛了一整天街，這裡吃完飯直接走回飯店最省力，不用再折騰交通。", address: "88 Sukhumvit Soi 19, Khlong Toei Nuea, Watthana, Bangkok 10110" },
+      { time: "20:30", title: "返回飯店", description: "【返程休息】步行約5-8分鐘返回飯店", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" }
     ]
   },
   {
@@ -148,5 +146,5 @@ export const thailandHero: HeroItinerary = {
   price: "NT$ 32,900 起",
   days: "6天5夜",
   date: "2027年2月5日(五) - 2月10日(三)",
-  description: "6天5夜曼谷家庭輕旅行，洽圖洽假日市集、班塔通路朱拉隆功夜市必吃美食、王朗市場在地小吃與鄭王廟泰服體驗、昭披耶河遊船晚餐、龍蓮寺過年參拜與Talad Noi街藝巷弄、Rajadamnern Stadium泰拳觀賽，加上朱拉隆功大學校園巡禮與Mahanakhon SkyWalk高空夕陽美景，步調輕鬆不趕行程。",
+  description: "6天5夜曼谷家庭輕旅行，洽圖洽假日市集、班塔通路朱拉隆功夜市必吃美食、王朗市場在地小吃與鄭王廟泰服體驗、昭披耶河遊船晚餐、龍蓮寺過年參拜與Talad Noi街藝巷弄、Rajadamnern Stadium泰拳觀賽，加上朱拉隆功大學校園巡禮與Siam商圈輕鬆購物日，步調輕鬆不趕行程。",
 };
