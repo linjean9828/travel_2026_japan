@@ -16,13 +16,13 @@ export const thailandItinerary: DayItinerary[] = [
     accommodation: "Jasmine City Hotel Bangkok（連住5晚）",
     accommodationDetails: JASMINE_CITY_HOTEL,
     image: "https://images.pexels.com/photos/16167720/pexels-photo-16167720.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    tips: ["曼谷時間比台灣慢1小時，抵達後記得調整手錶", "Jasmine City Hotel步行2-3分鐘可達BTS Asok站與MRT Sukhumvit站，是往返各景點的絕佳基地", "大型購物中心：Emporium、EmQuartier、Terminal 21 全都位於Sukhumvit/Asok一帶，適合晚間在飯店附近逛街放鬆", "今天不安排景點，讓大家調整時差、輕鬆熟悉飯店周邊環境"],
+    tips: ["曼谷時間比台灣慢1小時，抵達後記得調整手錶", "Jasmine City Hotel步行2-3分鐘可達BTS Asok站與MRT Sukhumvit站，是往返各景點的絕佳基地", "大型購物中心：Emporium、EmQuartier、Terminal 21 全都位於Sukhumvit/Asok一帶，適合晚間在飯店附近逛街放鬆", "今天不安排景點，讓大家調整時差、輕鬆熟悉飯店周邊環境", "飯店附近按摩店：May Massage（24, 12-13 Soi Sukhumvit 23，與飯店同巷，步行1-2分鐘，09:00-23:00）、Health Land Asoke（55/5 Sukhumvit 21 Rd，連鎖品牌品質穩定、鄰近BTS Asok與MRT Sukhumvit站，步行約10分鐘，09:00-23:00），下飛機後舒緩一下很適合", "其他按摩選擇：Ayothaya Massage（33/1 Sukhumvit 19，步行約10-12分鐘，08:00-22:00）、Ayothaya@18（3/3 Sukhumvit 18，同品牌分店，步行約12-15分鐘，08:00-00:00）、Dao Massage（近BTS Asok站、Sukhumvit路上，步行約10分鐘），都在飯店周邊步行可達範圍"],
     attractions: [
       { time: "09:00", title: "桃園機場出發", description: "【出發】搭機飛往曼谷素萬那普機場，飛行時間約3.5小時" },
       { time: "12:30", title: "抵達素萬那普機場", description: "【入境】辦理入境手續、提領行李，可選擇機場快線（Airport Rail Link）或計程車前往市區", address: "999 Moo 1, Nong Prue, Bang Phli District, Samut Prakan 10540" },
       { time: "14:00", title: "Jasmine City Hotel Check-in", description: "【飯店入住】辦理入住、放行李休息，步行2-3分鐘即達BTS Asok站", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" },
       { time: "14:45", title: "Baan Khanitha 午餐", purpose: "道地泰式料理初體驗", activities: ["泰式綠咖哩、大頭蝦料理", "涼拌柚子沙拉、椰奶加良薑雞湯", "芒果糯米飯"], description: "【飯店旁老字號】1993年開業的曼谷第一間泰式精緻料理餐廳、同樣位於Sukhumvit 23巷內，步行3-5分鐘可達", story: "Baan Khanitha是1993年開業的曼谷泰式料理老字號，被視為曼谷第一間精緻泰式餐廳。就在飯店所在的Sukhumvit 23巷內，剛下飛機放完行李、還沒完全清醒時，不用跑遠就能吃到道地水準的泰式料理，是抵達第一天最省力的午餐選擇。", mustEat: "泰式綠咖哩、大頭蝦料理、芒果糯米飯", dessert: "芒果糯米飯", phone: "+66 2 128 0906", address: "14 Soi Sukhumvit 23, Khlong Toei Nuea, Wattana, Bangkok 10110" },
-      { time: "16:00", title: "自由活動", description: "【輕鬆首日】無安排行程，可在飯店泳池放鬆、或於Sukhumvit巷弄間隨興散步" },
+      { time: "16:00", title: "自由活動・按摩放鬆", description: "【輕鬆首日】無安排行程，可在飯店泳池放鬆、於Sukhumvit巷弄間隨興散步，或就近體驗一場泰式按摩", purpose: "飯店周邊按摩推薦", activities: ["May Massage：Sukhumvit 23巷內、與飯店同一條巷子，步行1-2分鐘即達", "Health Land Asok：連鎖老字號、品質穩定、環境乾淨，步行約10分鐘"] },
       { time: "18:30", title: "【米其林推薦】The Local Bangkok 晚餐", purpose: "米其林推薦・曼谷家常菜初體驗", activities: ["品嚐米其林指南推薦的傳統泰式家常料理", "老宅改建的用餐空間、感受曼谷道地生活感"], description: "【米其林推薦】獲米其林指南推薦，就在飯店所在的Sukhumvit 23巷內、步行10分鐘可達", story: "The Local Bangkok位於一棟老宅改建的空間裡，主打逐漸消失的傳統泰式家常菜，獲米其林指南推薦。最大的優點是離Jasmine City Hotel非常近，第一晚不用長途奔波，就能吃到道地水準的泰式料理，是抵達當天最順路的晚餐選擇。", mustEat: "傳統泰式家常菜、泰式咖哩、酸辣湯", address: "32/1 Soi Sukhumvit 23, Khlong Toei Nuea, Wattana, Bangkok 10110" }
     ]
   },
@@ -30,12 +30,12 @@ export const thailandItinerary: DayItinerary[] = [
     day: 2,
     date: "2/6",
     dayOfWeek: "六",
-    title: "龍蓮寺過年參拜・Talad Noi街藝巷弄・Jodd Fairs火山排骨夜市",
-    highlight: "主線：Wat Mangkon Kamalawat龍蓮寺過年參拜→耀華力路美食（陳億粿條店＋Nai Mong蚵仔煎）→中華門→Wat Traimit金佛寺→新嘉坡餐室珍多冰→Talad Noi街藝巷弄→965bkk老宅咖啡下午茶→Phitthaya Sathian Bridge百年鐵橋→Jodd Fairs Ratchada夜市；選擇性：Talad Noi可依興趣調整停留時間",
+    title: "龍蓮寺過年參拜・Talad Noi街藝巷弄・Rajadamnern泰拳觀賽",
+    highlight: "主線：Wat Mangkon Kamalawat龍蓮寺過年參拜→耀華力路美食（陳億粿條店＋Nai Mong蚵仔煎）→中華門→Wat Traimit金佛寺→新嘉坡餐室珍多冰→Talad Noi街藝巷弄→965bkk老宅咖啡下午茶→Phitthaya Sathian Bridge百年鐵橋→Likhit Kai Yang烤雞晚餐→Rajadamnern Stadium泰拳觀賽；選擇性：Talad Noi可依興趣調整停留時間",
     accommodation: "Jasmine City Hotel Bangkok",
     accommodationDetails: JASMINE_CITY_HOTEL,
     image: "https://images.pexels.com/photos/38337464/pexels-photo-38337464.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    tips: ["2027年農曆新年除夕就是2/6（今天），龍蓮寺過年氣氛與香火最為鼎盛，記得提早出發避開參拜人潮", "今天走法改成從北邊龍蓮寺一路往南走到Talad Noi、最後在Hua Lamphong站搭車返回，全程單一方向不用走回頭路", "本日步行與景點較多，可依家人興趣自由取捨Talad Noi的停留時間，保留宗教參拜與Jodd Fairs夜市作主要行程即可", "Wat Mangkon Kamalawat除夕過年期間可能延長開放時間迎接參拜人潮，實際時間建議出發前再確認", "陳億粿條店與Nai Mong蚵仔煎都在龍蓮寺附近，建議兩家分食少量嘗鮮，不用只選一家", "Talad Noi巷弄狹窄曲折，建議穿好走的鞋，跟著地圖或導覽慢慢逛", "965bkk週二公休、營業至19:00，若剛好遇到公休日可改往同巷內La Cabra - Talad Noi喝咖啡", "Jodd Fairs已搬遷至Ratchada現址（近MRT Thailand Cultural Centre站），營業至凌晨1點"],
+    tips: ["2027年農曆新年除夕就是2/6（今天），龍蓮寺過年氣氛與香火最為鼎盛，記得提早出發避開參拜人潮", "今天走法改成從北邊龍蓮寺一路往南走到Talad Noi、最後在Hua Lamphong站搭車返回，全程單一方向不用走回頭路", "本日步行與景點較多，可依家人興趣自由取捨Talad Noi的停留時間，保留宗教參拜與晚上的泰拳觀賽作主要行程即可", "Wat Mangkon Kamalawat除夕過年期間可能延長開放時間迎接參拜人潮，實際時間建議出發前再確認", "陳億粿條店與Nai Mong蚵仔煎都在龍蓮寺附近，建議兩家分食少量嘗鮮，不用只選一家", "Talad Noi巷弄狹窄曲折，建議穿好走的鞋，跟著地圖或導覽慢慢逛", "965bkk週二公休、營業至19:00，若剛好遇到公休日可改往同巷內La Cabra - Talad Noi喝咖啡", "週六場是Rajadamnern World Series、是評價最好的場次之一，建議提前上網訂票，一般座位約1,600泰銖起、View seat 2,500泰銖起"],
     attractions: [
       { time: "09:00", title: "從飯店出發", description: "【出發點】搭MRT前往Wat Mangkon站（約25-30分鐘）", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" },
       { time: "09:45", title: "Wat Mangkon Kamalawat 龍蓮寺", purpose: "過年參拜・曼谷最重要華人廟宇", activities: ["參拜曼谷規模最大、最重要的華人廟宇", "感受農曆新年期間香火鼎盛的氣氛", "祈求新的一年平安順利"], description: "【過年參拜】曼谷最大最重要的華人廟宇、1871年創建、每年農曆新年最熱鬧、鄰近MRT Wat Mangkon站，是今天南下路線的起點", story: "Wat Mangkon Kamalawat（龍蓮寺）是曼谷規模最大、最重要的華人廟宇，1871年由中國僧人創建，後獲拉瑪五世賜名。每年農曆新年期間這裡是曼谷華人社群最重要的參拜地點，香火鼎盛、人潮絡繹不絕，正好搭上今年2/6除夕當天前來祈福。從這裡開始一路往南走到Talad Noi，全程不用走回頭路。", address: "423 Charoen Krung Rd, Pom Prap Sattru Phai, Bangkok 10100" },
@@ -50,8 +50,10 @@ export const thailandItinerary: DayItinerary[] = [
       { time: "14:50", title: "965bkk 老宅咖啡下午茶", purpose: "老宅咖啡廳・下午茶歇腳", activities: ["200年老宅改建的複合式咖啡空間，挑高天井拍照很好看", "手沖咖啡、招牌特調飲品", "輕食蛋糕搭配咖啡，全家歇腳的午後休息點"], description: "【網美打卡】Talad Noi近年最熱門的老宅咖啡廳，就在Soi Wanit 2巷內、從Hong Sieng Kong步行即達，週二公休、營業至19:00", story: "965bkk由一棟200年歷史的中式老宅改建而成，結合咖啡、輕食與選物空間，是近年Talad Noi討論度最高的咖啡廳之一。因為對岸的Lhong 1919已永久歇業不再開放，改在同一條巷弄裡的965bkk喝咖啡歇腳，省去搭船過河的時間，行程動線也更順。", mustEat: "手沖咖啡、招牌特調、輕食蛋糕", dessert: "當日供應蛋糕與甜點", address: "965 Soi Wanit 2, Talat Noi, Samphanthawong, Bangkok 10100" },
       { time: "15:45", title: "Phitthaya Sathian Bridge 百年鐵橋", purpose: "維多利亞哥德式鐵橋收尾", activities: ["維多利亞哥德式風格百年鋼構鐵橋拍照", "橫跨拍鵬功嘉森運河（Khlong Padung Krung Kasem）", "今天南下路線的最終點，步行即達MRT Hua Lamphong站"], description: "【百年地標】拉瑪六世時期建成的哥德式鋼構鐵橋、橫跨Charoen Krung Rd上的運河，是Talad Noi巷弄最南端、鄰近Hua Lamphong站", story: "Phitthaya Sathian Bridge是曼谷少見的維多利亞哥德式鋼構鐵橋，由義大利建築師設計、拉瑪六世時期建成，橫跨拍鵬功嘉森運河、劃分Talad Noi與Bang Rak兩區。作為今天一路從龍蓮寺往南走的最後一站，在這裡拍完照就能直接步行到MRT Hua Lamphong站搭車返回飯店，全程只走一個方向、不用走回頭路。", address: "Charoen Krung Rd, Talat Noi, Samphanthawong, Bangkok 10100" },
       { time: "16:00", title: "返回飯店", description: "【返程休息】步行至MRT Hua Lamphong站，搭藍線直接返回Sukhumvit站（無需轉乘），回飯店稍作休息整理", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" },
-      { time: "17:30", title: "前往Jodd Fairs Ratchada", description: "【路上轉移】搭MRT藍線前往Thailand Cultural Centre站（同一條線無需轉乘，Exit 4），步行約2-3分鐘即達夜市入口" },
-      { time: "18:00", title: "Jodd Fairs Ratchada 火山排骨夜市", purpose: "夜市美食體驗・全家分食", activities: ["Leng Zabb「火山排骨」堆疊如山的辣燉排骨奇景", "現烤蝦、烤魷魚與烤貝類海鮮", "泰式烤豬肉串（Moo Ping）與烤雞翅", "泰式船麵、打拋飯等小份量主食", "椰子冰淇淋、芒果糯米飯與泰式奶茶甜點", "文創攤位選購曼谷夜市限定商品"], description: "【夜市美食】火山排骨、炭烤海鮮、Moo Ping烤豬肉串與泰式甜點，鄰近MRT Thailand Cultural Centre站、營業至凌晨01:00", story: "「Joddi」正是曼谷人氣夜市Jodd Fairs的暱稱，原Rama 9分店已於2025年中搬遷至Ratchada現址，規模更大、動線也更清楚好逛。除了招牌火山排骨，建議全家採取少量多樣的吃法：先分食烤蝦、烤魷魚與Moo Ping，再補一份泰式主食，最後用椰子冰淇淋或芒果糯米飯收尾。", mustEat: "火山排骨、炭烤蝦與魷魚、Moo Ping烤豬肉串、泰式船麵", dessert: "椰子冰淇淋、芒果糯米飯、泰式奶茶", address: "129 Ratchadaphisek Rd, Din Daeng, Bangkok 10400" }
+      { time: "17:30", title: "前往老城區晚餐", description: "【路上轉移】搭計程車前往Ratchadamnoen老城區（約20-25分鐘，視交通狀況）" },
+      { time: "18:00", title: "Likhit Kai Yang 烤雞晚餐", purpose: "拳擊館旁50年烤雞老店", activities: ["招牌炭烤雞（Kai Yang）", "青木瓜沙拉（Som Tum）", "糯米飯、東北料理配菜"], description: "【拳前老店】就在Rajadamnern Stadium旁、開業超過50年的烤雞老店，觀賽前用餐最順路", story: "Likhit Kai Yang緊鄰Rajadamnern Stadium，超過半世紀以來都是拳迷看賽前的固定用餐選擇，招牌炭烤雞外皮焦香、肉質多汁，配上酸辣夠味的青木瓜沙拉與糯米飯，簡單道地又不會太飽，很適合接著進場看拳賽。", mustEat: "炭烤雞（Kai Yang）、青木瓜沙拉（Som Tum）、糯米飯", phone: "02 281 1094", address: "74/1 Ratchadamnoen Nok Rd, Wat Somanat, Pom Prap Sattru Phai, Bangkok 10100" },
+      { time: "19:00", title: "Rajadamnern Stadium 泰拳觀賽", purpose: "世界第一座泰拳體育館・現場觀賽", activities: ["現場觀賞正統泰拳對戰、拳台儀式Wai Kru", "感受泰拳迷熱烈的加油氣氛", "週六場是Rajadamnern World Series，賽事精彩度最高的場次之一"], description: "【世界第一座泰拳館】1945年開幕的世界第一座泰拳體育館，週六19:00-22:00 Rajadamnern World Series場次，建議提前上網訂票", story: "Rajadamnern Stadium是全球第一座專門的泰拳體育館，1945年開幕至今始終是泰拳界最具代表性的殿堂。週六場的Rajadamnern World Series是評價最好的場次之一，現場感受拳台上的Wai Kru拜師禮、鼓樂伴奏與觀眾熱烈的加油聲，是全家人體驗泰國國粹最直接的方式，逛完一整天的老城區後剛好就近觀賽，不用再跑遠。", address: "1 Ratchadamnoen Nok Ave, Pom Prap Sattru Phai, Bangkok 10100" },
+      { time: "22:00", title: "返回飯店", description: "【返程休息】搭計程車直接返回飯店（約25-30分鐘，視交通狀況）", phone: "+66 2 204-5888", address: "2 Sukhumvit 23, Klongtoey-nue, Wattana, Bangkok 10110" }
     ]
   },
   {
@@ -146,5 +148,5 @@ export const thailandHero: HeroItinerary = {
   price: "NT$ 32,900 起",
   days: "6天5夜",
   date: "2027年2月5日(五) - 2月10日(三)",
-  description: "6天5夜曼谷家庭輕旅行，洽圖洽假日市集、班塔通路朱拉隆功夜市必吃美食、王朗市場在地小吃與鄭王廟泰服體驗、昭披耶河遊船晚餐、龍蓮寺過年參拜與Talad Noi街藝巷弄，加上Jodd Fairs火山排骨與Mahanakhon SkyWalk高空夕陽美景，步調輕鬆不趕行程。",
+  description: "6天5夜曼谷家庭輕旅行，洽圖洽假日市集、班塔通路朱拉隆功夜市必吃美食、王朗市場在地小吃與鄭王廟泰服體驗、昭披耶河遊船晚餐、龍蓮寺過年參拜與Talad Noi街藝巷弄、Rajadamnern Stadium泰拳觀賽，加上朱拉隆功大學校園巡禮與Mahanakhon SkyWalk高空夕陽美景，步調輕鬆不趕行程。",
 };
